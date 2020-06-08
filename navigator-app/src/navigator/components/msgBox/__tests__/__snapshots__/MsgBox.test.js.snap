@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MsgBox /> component should match the snapshot 1`] = `
+<div>
+  <div
+    className="msg-box"
+  >
+    <div
+      className="status msg"
+    >
+      <div
+        className=""
+      >
+        Rendering
+      </div>
+    </div>
+    <div
+      className="status"
+    >
+      <p>
+        Total Distance: 
+        <strong>
+          1
+           Km
+        </strong>
+      </p>
+      <p>
+        Total Time: 
+        <strong>
+          2
+           Hrs
+        </strong>
+      </p>
+    </div>
+  </div>
+</div>
+`;

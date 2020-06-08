@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigator /> component should match the snapshot 1`] = `
+<div
+  className="box"
+>
+  <section
+    id="controls"
+  >
+    <div
+      className="input-container"
+    >
+      <div
+        className="rows"
+      >
+        <p>
+          Start Location
+        </p>
+        <input
+          className="input-control"
+          name="startLocation"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div
+        className="rows"
+      >
+        <p>
+          Drop off Location
+        </p>
+        <input
+          className="input-control"
+          name="dropLocation"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div />
+      <div
+        className="clear"
+      />
+      <div
+        className="form-control"
+      >
+        <button
+          className="btn"
+          disabled={true}
+          onClick={[Function]}
+        >
+          Submit
+        </button>
+        <button
+          className="btn"
+          onClick={[Function]}
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </section>
+  <div
+    id="map"
+  />
+</div>
+`;

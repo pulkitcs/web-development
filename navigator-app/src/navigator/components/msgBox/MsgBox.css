@@ -1,0 +1,51 @@
+.msg-box {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 5px 10px;
+  height: auto;
+  background-color: #f4f4f4;
+}
+
+.msg-box h2{
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.status {
+  text-transform: capitalize;
+  font-size: 13px;
+}
+
+.status > .error {
+  font-size: 13px;
+}
+
+.status p{
+  margin: 5px 0 5px 0;
+  line-height: 18px;
+}
+
+.status.msg {
+  height: 25px;
+  font-weight: bold;
+}
+
+.status.msg > .error{
+  color: #ee3124;
+  height: auto;
+  line-height: 25px;
+  margin-top: 0;
+}
+
+.status.msg > img,
+.status.msg > span {
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+}
+
+.clear {
+  clear: both;
+}

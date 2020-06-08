@@ -1,0 +1,78 @@
+.container {
+  height: auto;
+  width: 1300px;
+  margin: 50px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.container > span {
+  width: 50px;
+  text-align: center;
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  border-radius: 15px;
+  background-color: #ccc;
+  transition: background-color 300ms;
+}
+
+.container > span:hover {
+  background-color: #f4f4f4;
+  transition: background-color 300ms;
+}
+
+.container > div {
+  width: 1100px;
+  background-color: #f4f4f4;
+  min-height: 500px;
+  text-align: center;
+}
+
+.container > div > img {
+  animation: opacityAnime 1s;
+}
+
+.imageBox {
+  height: auto;
+  width: auto;
+  float: left;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.imageBox > img {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  border: solid 5px #ccc;
+  border-radius: 3px;
+}
+
+.imageBox > img.selected {
+  border-color:#ee3124;
+}
+
+@keyframes opacityAnime{
+  from {
+    opacity: 0
+  };
+
+  to {
+    opacity: 1
+  };
+}
+
+.box {
+  height: auto;
+  width: 1000px;
+  margin: 20px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100px;
+}

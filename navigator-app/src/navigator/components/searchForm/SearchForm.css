@@ -1,0 +1,35 @@
+
+.form-control {
+  margin-top: 20px;
+}
+
+.form-control::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.btn {
+  display: inline-block;
+  border: solid thin #ccc;
+  padding: 7px;
+  width: 100px;
+  float: left;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.btn:disabled{
+  cursor: default;
+}
+
+.btn:hover:not(:disabled),
+.btn:focus {
+  background-color: #f4f4f4;
+}
+
+.btn:first-child {
+ margin-right: 10px;
+}

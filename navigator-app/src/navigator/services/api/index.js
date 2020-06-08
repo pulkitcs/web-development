@@ -1,0 +1,1 @@
+export { fetchApiData } from './api-service';

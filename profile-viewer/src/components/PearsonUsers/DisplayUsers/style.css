@@ -1,0 +1,37 @@
+.tile {
+  background-color: #fff;
+  width: 212px;
+  padding: 10px 10px;
+  position: relative;
+  box-shadow: 0 0 5px 5px #ccc;
+  margin: 50px 18px 20px 19px;
+  float: left;
+}
+
+.tile > .name {
+  font-size: 18px;
+  font-weight: normal;
+  color: #e93939;
+  text-align: center;
+  margin: 50px 0 25px 0;
+}
+
+.tile > .delete {
+  font-size: 14px;
+  color: #007fa3;
+  cursor: pointer;
+  display: inline;
+  opacity: .6;
+}
+
+.tile > .delete:hover {
+  opacity: 1;
+}
+
+.tile > .tile-img {
+  position: absolute;
+  top: -40px;
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -40px;
+}
