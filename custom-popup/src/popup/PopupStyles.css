@@ -1,0 +1,52 @@
+section.popupContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: rows;
+  justify-content: space-around;
+  z-index: 100;
+  padding: 5px 5px;
+  visibility: visible; /* Incase to keep webpage non interactive */
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+section.popupContainer > .popupBox {
+  visibility: visible; /* Should be visible in case parent is hidden */
+  position: absolute;
+  top: 50%;
+  min-height: 100px;
+  height: auto;
+  width: 500px;
+  box-shadow: 0 0 10px 0 #999;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 5px 5px;
+  animation: fadeIn 500ms
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section.popupContainer .cancelButton {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  opacity: .6;
+  cursor: pointer;
+}
+
+section.popupContainer .cancelButton > svg {
+  height: 20px;
+  width: 20px;
+}
