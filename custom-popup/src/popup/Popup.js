@@ -7,13 +7,15 @@ import './PopupStyles.css';
 
 let timeOut = 0;
 
-const Popup = ({classes, body: Body, timer, delay, onClose}) => {
+const Popup = ({classes, children, delay, forceClose, onClose, timer }) => {
   const [isPopupOpen, togglePopupOpen] = useState(false); // Mange state to enable / disable popup
   const [isFirstTimeRender, toggleFirstTimeRender] = useState(false); // Mange state to check onPageLoad condition
   const handlePopupClose = () => {
     togglePopupOpen(false);
     onClose(); // Invoke the callback methods
   }
+
+  forceClose(() => handlePopupClose());
 
   useEffect(() => {
       if (!isPopupOpen && !isFirstTimeRender) {
@@ -42,11 +44,7 @@ const Popup = ({classes, body: Body, timer, delay, onClose}) => {
             >
               <CloseIcon  />
             </button>
-            <Body
-              {...{
-                handlePopupClose: handlePopupClose,
-              }}
-            />
+            { children }
           </article>
         </section>
       )}
@@ -56,16 +54,18 @@ const Popup = ({classes, body: Body, timer, delay, onClose}) => {
 
 Popup.propTypes = {
   classes:  PropTypes.string,
-  timer: PropTypes.number,
   delay: PropTypes.number,
+  forceClose: PropTypes.func,
   onClose: PropTypes.func,
+  timer: PropTypes.number,
 }
 
 Popup.defaultProps = {
-  delay: 0,
-  timer: 5000,
   classes: '',
+  delay: 0,
+  forceClose: () => null,
   onClose: () => null,
+  timer: 5000,
 }
 
 export default Popup
