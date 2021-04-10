@@ -79,7 +79,10 @@ const PopupController = ({
       }, delay);
     } else if (isPopupOpen && isFirstTimeRender) {
       clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => handlePopupClose(), timer);
+
+      if(isFinite(timer) && typeof(timer) === "number") {
+        timeOut.current = setTimeout(() => handlePopupClose(), timer);
+      }
     }
   }, [isPopupOpen, isFirstTimeRender, handlePopupClose, delay, timer]);
 
@@ -114,7 +117,6 @@ PopupController.defaultProps = {
   delay: 0,
   forceClose: () => null,
   onClose: () => null,
-  timer: 5000,
 };
 
 export default memo(PopupController);
