@@ -14,17 +14,17 @@ import CloseIcon from "./components/CloseIcon";
 import "./PopupStyles.css";
 
 const Popup = memo((props) => {
-  const { children, classes, name, togglePopupOpen, onClose } = props;
+  const { children, classes, id, togglePopupOpen, onClose } = props;
   const [container] = useState(document.createElement("div"));
 
   useEffect(() => {
-    container.setAttribute("data-id", name);
+    container.setAttribute("data-id", id);
     document.body.appendChild(container);
 
     return () => {
       document.body.removeChild(container);
     };
-  }, [container, name]);
+  }, [container, id]);
 
   return createPortal(
     <Fragment>
