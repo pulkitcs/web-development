@@ -4,10 +4,8 @@ import SubscriptionImage from './imgs/Subscription.jpg';
 
 import './BannerStyles.css'
 
-const Banner = ({ handlePopupClose, onClick }) => {
-  // handleOnClick() is injected from the popups
+const Banner = ({ onClick }) => {
   const handleOnClick = () => {
-    handlePopupClose();
     onClick();
   }
 
@@ -24,7 +22,6 @@ const Banner = ({ handlePopupClose, onClick }) => {
 export default Banner;
 
 Banner.propTypes = {
-  handlePopupClose: PropTypes.func.isRequired,
   onClick: PropTypes.func,
 }
 
