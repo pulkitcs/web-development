@@ -1,71 +1,120 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types';
+import React, {
+  Fragment,
+  memo,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
+import { createPortal } from "react-dom";
+import PropTypes from "prop-types";
 
-import CloseIcon from './components/CloseIcon';
+import CloseIcon from "./components/CloseIcon";
 
-import './PopupStyles.css';
+import "./PopupStyles.css";
 
-let timeOut = 0;
+const Popup = memo((props) => {
+  const { children, classes, name, togglePopupOpen, onClose } = props;
+  const [container] = useState(document.createElement("div"));
 
-const Popup = ({classes, children, delay, forceClose, onClose, timer }) => {
+  useEffect(() => {
+    container.setAttribute("data-id", name);
+    document.body.appendChild(container);
+
+    return () => {
+      document.body.removeChild(container);
+    };
+  }, [container, name]);
+
+  return createPortal(
+    <Fragment>
+      {
+        <section className={`popupContainer ${classes}`}>
+          <article className="popupBox">
+            <button
+              onClick={() => {
+                // Invoke the callback method
+                togglePopupOpen(false);
+                onClose();
+              }}
+              className="cancelButton"
+            >
+              <CloseIcon />
+            </button>
+            {children}
+          </article>
+        </section>
+      }
+    </Fragment>,
+    container
+  );
+});
+
+const PopupController = ({
+  classes,
+  children,
+  delay,
+  forceClose,
+  id = String(Math.random()),
+  onClose,
+  timer,
+}) => {
   const [isPopupOpen, togglePopupOpen] = useState(false); // Mange state to enable / disable popup
   const [isFirstTimeRender, toggleFirstTimeRender] = useState(false); // Mange state to check onPageLoad condition
-  const handlePopupClose = () => {
+  const timeOut = useRef(0);
+
+  const handlePopupClose = useCallback(() => {
     togglePopupOpen(false);
     onClose(); // Invoke the callback methods
-  }
+  }, [togglePopupOpen, onClose]);
 
   forceClose(() => handlePopupClose());
 
   useEffect(() => {
-      if (!isPopupOpen && !isFirstTimeRender) {
-        clearTimeout(timeOut)
-        timeOut = setTimeout(() => {
-          togglePopupOpen(true)
-          toggleFirstTimeRender(true)
-        }, delay)
-      } else if (isPopupOpen && isFirstTimeRender) {
-        clearTimeout(timeOut)
-        timeOut = setTimeout(() => handlePopupClose(), timer)
-      }
-    });
+    if (!isPopupOpen && !isFirstTimeRender) {
+      clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => {
+        togglePopupOpen(true);
+        toggleFirstTimeRender(true);
+      }, delay);
+    } else if (isPopupOpen && isFirstTimeRender) {
+      clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => handlePopupClose(), timer);
+    }
+  }, [isPopupOpen, isFirstTimeRender, handlePopupClose, delay, timer]);
 
   return (
     <>
-      { isPopupOpen && (
-        <section className={`popupContainer ${classes}`}>
-          <article className="popupBox">
-            <button onClick={() => {
-              // Invoke the callback method
-              togglePopupOpen(false);
-              onClose();
-              }}
-              className="cancelButton"
-            >
-              <CloseIcon  />
-            </button>
-            { children }
-          </article>
-        </section>
+      {isPopupOpen && (
+        <Popup
+          children={children}
+          classes={classes}
+          id={id}
+          togglePopupOpen={togglePopupOpen}
+          onClose={onClose}
+        >
+          {children}
+        </Popup>
       )}
     </>
-  )
-}
+  );
+};
 
-Popup.propTypes = {
-  classes:  PropTypes.string,
+PopupController.propTypes = {
+  classes: PropTypes.string,
   delay: PropTypes.number,
   forceClose: PropTypes.func,
+  id: PropTypes.string,
   onClose: PropTypes.func,
   timer: PropTypes.number,
-}
+};
 
-Popup.defaultProps = {
-  classes: '',
+PopupController.defaultProps = {
+  classes: "",
   delay: 0,
   forceClose: () => null,
   onClose: () => null,
   timer: 5000,
-}
+};
 
-export default Popup
+export default memo(PopupController);
