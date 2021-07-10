@@ -1,13 +1,12 @@
 const ESLintPlugin = require("eslint-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.jsx",
 
   output: {
-    filename: "main.js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
 
@@ -28,17 +27,30 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.(css|less)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: {
+                localIdentName: "[path][name]__[local]--[hash:base64:5]",
+              },
+            },
+          },
+          {
+            loader: "less-loader",
+          },
+        ],
       },
     ],
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   plugins: [
     new ESLintPlugin(),
     new HTMLWebpackPlugin({ template: "./public/index.html" }),
-    new MiniCssExtractPlugin(),
   ],
 };

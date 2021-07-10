@@ -9,5 +9,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-  }
+  },
+  "includes": [
+    "./externals.d.ts"
+ ]
 }
