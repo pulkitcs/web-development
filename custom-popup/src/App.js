@@ -14,6 +14,7 @@ const App = () => {
 
   return (
     <main>
+      { /* Popup with custom implmentation */ }
       <Popup
         id="pop1"
         classes="customStyle"

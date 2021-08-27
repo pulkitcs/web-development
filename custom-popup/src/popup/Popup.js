@@ -59,8 +59,8 @@ const PopupController = ({
   onClose,
   timer,
 }) => {
-  const [isPopupOpen, togglePopupOpen] = useState(false); // Mange state to enable / disable popup
-  const [isFirstTimeRender, toggleFirstTimeRender] = useState(false); // Mange state to check onPageLoad condition
+  const [isPopupOpen, togglePopupOpen] = useState(false); // Manage state to enable / disable popup
+  const [isFirstTimeRender, toggleFirstTimeRender] = useState(false); // Manage state to check onPageLoad condition
   const timeOut = useRef(0);
 
   const handlePopupClose = useCallback(() => {
@@ -80,7 +80,7 @@ const PopupController = ({
     } else if (isPopupOpen && isFirstTimeRender) {
       clearTimeout(timeOut.current);
 
-      if(isFinite(timer) && typeof(timer) === "number") {
+      if (isFinite(timer) && typeof timer === "number") {
         timeOut.current = setTimeout(() => handlePopupClose(), timer);
       }
     }
