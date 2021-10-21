@@ -1,0 +1,9 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "jsx": "react",
+    "noEmit": false,
+  }
+}
