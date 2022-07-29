@@ -3,8 +3,8 @@ import DisplayUsers from './DisplayUsers';
 
 import SampleData from './data.json';
 import ApiFetch from '../../helpers/ApiFetch.js';
-import Loader from '../../helpers/Loader.js';
-import ErrorMsg from '../../helpers/ErrorMsg';
+import Loader from './Loader';
+import ErrorMsg from './ErrorMsg';
 
 import PATHS from '../../configs/path.config.json';
 import CONSTANTS from '../../configs/constants.json';
