@@ -1,5 +1,6 @@
-#Profile Dashboard
+created using <img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/ProfileDashboard.gif">
 
+#Profile Dashboard  
 ## Prerequisites
  - Latest `node.js`
 ## Requirement
@@ -12,4 +13,4 @@
 3. Start app, run ```yarn/npm run start```
 4. Open http://localhost:3000/
 
-
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/ProfileDashboard.gif" />
