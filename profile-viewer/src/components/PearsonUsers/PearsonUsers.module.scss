@@ -3,13 +3,17 @@
   font-size: 36px;
 	font-weight: normal;
 	padding: 20px 20px;
+	background-color: #fff;
 }
 
-.container-box {
-	background-color: #d8d8d8;
-	height: 100vh;
-	width: 100%;
+.containerBox {
 	padding: 20px 20px;
+}
+
+.profiles {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 
 .reload {

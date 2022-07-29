@@ -9,7 +9,7 @@ import ErrorMsg from '../../helpers/ErrorMsg';
 import PATHS from '../../configs/path.config.json';
 import CONSTANTS from '../../configs/constants.json';
 
-import './style.css';
+import styles from './PearsonUsers.module.scss';
 
 class PearsonUsers extends Component {
   constructor() {
@@ -84,17 +84,19 @@ class PearsonUsers extends Component {
   render () {
     const { loading, users, error } = this.state;
     return (
-      <div className="container pearon-users">
-        <h1 className="header">Pearson User Management</h1>
-        <div className="container-box">
-          <button className="reload" value="reload" onClick={this.reloadData} disabled={loading}>Reload</button>
-          {
-            loading ? <Loader height={50} width={50} />
-                 : <DisplayUsers onclick={this.deleteUser} data={users}/>
-          }
-        </div>
+      <main className={`${styles.container}`}>
+        <h1 className={styles.header}>Pearson User Management</h1>
+        <section className={styles.containerBox}>
+          <button className={styles.reload} value="reload" onClick={this.reloadData} disabled={loading}>Reload</button>
+          <div className={styles.profiles}>
+            {
+              loading ? <Loader height={50} width={50} />
+                  : <DisplayUsers onclick={this.deleteUser} data={users}/>
+            }
+          </div>
+        </section>
         { error && <ErrorMsg click={this.disableErrorBox} message={error.message || ''}/> }
-      </div>
+      </main>
     );
   }
 }
