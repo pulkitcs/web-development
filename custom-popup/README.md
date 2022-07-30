@@ -15,4 +15,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - The Toast auto closes after specified seconds
 - The Toast should be cancellable
 
-<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/screenshots/Toast/Toast.gif" alt="Toast or Custom-Popup Screenshot" />
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/screenshots/Toast/Toast.gif" alt="loading Toast or Custom-Popup Screenshot" />
