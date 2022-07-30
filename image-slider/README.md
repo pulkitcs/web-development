@@ -19,4 +19,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 3. Start app, run `yarn/npm run start`
 4. Open http://localhost:3000/
 
-<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/screenshots/ImageSlider/ImageSlider.gif" />
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/screenshots/ImageSlider/ImageSlider.gif" alt= "Image Slicder screenshot"/>
