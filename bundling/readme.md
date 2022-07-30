@@ -3,11 +3,11 @@
 # Webpack Project Bundling
 
 ### Requirements
-- Create a webpack bundler setup with Typescript support
-- Integrate less and SASS for better CSS support
-- Good to have: Tailwind and POST CSS integration for testing
+- Create a `webpack bundler` setup with `Typescript` support
+- Integrate `LESS` and `SASS` for better `CSS` support
+- Good to have: `Tailwind` and `POST-CSS` integration for testing
 ### Technologies Used
 
 - Webpack
 - Typescript
-- ReactJS, Typescript and Webpack for bundling
+- ReactJS and Webpack for bundling
