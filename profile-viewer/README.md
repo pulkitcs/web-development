@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/html.png" height="30" title="HTML5">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/css.png" title="CSS" height="30">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/js.png" height="30" title="JAVASCRIPT">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/node.png" height="35" title="NODE.JS">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/react.png" height="30" title="REACT.JS">
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/html.png" height="30" title="HTML5">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/css.png" title="CSS" height="30">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/js.png" height="30" title="JAVASCRIPT">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/node.png" height="35" title="NODE.JS">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/react.png" height="30" title="REACT.JS">
 
 # Profile Dashboard
 
@@ -18,4 +18,4 @@
 3. Start app, run `yarn/npm run start`
 4. Open http://localhost:3000/
 
-<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/ProfileDashboard.gif" />
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/screenshots/ProfileDashboard/ProfileDashboard.gif" />

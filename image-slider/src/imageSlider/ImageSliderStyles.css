@@ -26,13 +26,13 @@
 
 .container > div {
   width: 1100px;
-  background-color: #f4f4f4;
   min-height: 500px;
   text-align: center;
 }
 
 .container > div > img {
   animation: opacityAnime 1s;
+  border-radius: 20px;
 }
 
 .imageBox {
@@ -51,6 +51,7 @@
   display: block;
   border: solid 5px #ccc;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .imageBox > img.selected {

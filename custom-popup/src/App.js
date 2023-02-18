@@ -35,7 +35,7 @@ const App = () => {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </p>
-      <Popup
+      {/* <Popup
         id="pop2"
         delay={2000} // 2s
         onClose={popupClosed}
@@ -52,7 +52,7 @@ const App = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </p>
-      </Popup>
+      </Popup> */}
     </main>
   );
 };

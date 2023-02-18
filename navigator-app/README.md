@@ -1,3 +1,6 @@
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/html.png" height="30" title="HTML5">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/css.png" title="CSS" height="30">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/js.png" height="30" title="JAVASCRIPT">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/node.png" height="35" title="NODE.JS">&nbsp;<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/icons/react.png" height="30" title="REACT.JS">
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 # Navigator App
 
 Application to plot distance between two locations on Google Map
@@ -41,3 +44,6 @@ npm start
 ## Tests
 
 Run `npm test` to run the tests
+
+
+<img src="https://raw.githubusercontent.com/wiki/pulkitcs/web-development/screenshots/Navigator/Navigator.png" alt= "Navigator App screenshot"/>

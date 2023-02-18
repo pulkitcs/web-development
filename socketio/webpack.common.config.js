@@ -6,7 +6,7 @@ module.exports = ({
     main: "./client/index.js"
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'build'),
     filename: "bundle.js",
   },
   module: {
@@ -20,7 +20,6 @@ module.exports = ({
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-react", "@babel/preset-env"],
-          plugins: ['@babel/proposal-class-properties']
         },
       }
     ]

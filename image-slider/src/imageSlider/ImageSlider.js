@@ -4,7 +4,7 @@ import './ImageSliderStyles.css';
 const ImageSlider = ({ imageArray = []}) => {
   const [currentIdx, updateIdx] = useState(0)
 
-  const prev = (idx) => {
+  const prev = () => {
     let count = currentIdx;
 
     if (currentIdx > 0) {
@@ -16,7 +16,7 @@ const ImageSlider = ({ imageArray = []}) => {
     updateIdx(count)
   }
 
-  const next = (idx) => {
+  const next = () => {
     let count = currentIdx;
     
     if (currentIdx < (imageArray.length - 1)) {
@@ -30,9 +30,9 @@ const ImageSlider = ({ imageArray = []}) => {
 
   const Preview = ({item}) => (
     <div className="container">
-      <span onClick={() => prev(currentIdx)}>Prev</span>
+      <span onClick={() => prev()}>Prev</span>
       <div><img src={item} key={item} width="1100px" height="730px" alt={item} /></div>
-      <span onClick={() => next(currentIdx)}>Next</span>
+      <span onClick={() => next()}>Next</span>
     </div>
   )
   

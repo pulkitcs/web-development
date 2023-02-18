@@ -11,7 +11,7 @@ io.on('connection', socket => {
   console.log(socket.id);
 })
 
-app.use(express.static("public"));
+app.use(express.static("build"));
 
 app.listen(port, () => {
   console.log(`Server started @ port ${port}`);
