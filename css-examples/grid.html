@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Grid based layout</title>
+	<style type="text/css">
+		section {
+			display: grid;
+			grid-template-columns: 50px 50px 50px;
+			grid-gap: 5px;
+			grid-auto-flow: column;
+		}
+		article {
+			border: thin solid grey;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<article></article>
+		<article></article>
+		<article></article>
+		<article></article>
+		<article></article>
+	</section>
+</body>
+</html>
