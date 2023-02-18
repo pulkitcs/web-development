@@ -1,0 +1,41 @@
+.navbar {
+  padding: 5px;
+  position: relative;
+}
+
+.button {
+  border: none;
+  padding: 7px 10px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.button:hover {
+  background-color: #f4f4f4;
+}
+
+.button:focus {
+  background-color: lightblue;
+}
+
+.menu {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 2px 2px 5px 1px #ccc;
+  width: fit-content;
+}
+
+.menu > li {
+  border-bottom: solid thin #ccc;
+  width: 200px;
+}
+
+li .button {
+  text-align: left;
+  width: 100%;
+  border-radius: 0;
+}
