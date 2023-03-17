@@ -1,6 +1,6 @@
-const sharedConfig = require("./webpack.shared.config");
+import sharedConfig from "./webpack.shared.config.js";
 
-module.exports = {
+const config = {
   ...sharedConfig,
   mode: "development",
   devtool: 'inline-source-map',
@@ -11,3 +11,5 @@ module.exports = {
     liveReload: true,
   },
 }
+
+export default config;

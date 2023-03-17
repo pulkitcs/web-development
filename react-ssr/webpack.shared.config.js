@@ -1,16 +1,16 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ESLintPlugin from "eslint-webpack-plugin";
+import HTMLWebpackPlugin from "html-webpack-plugin";
+import path from "path";
 
 const devMode = process.env.NODE_ENV !== "production";
 
-module.exports = {
+const config = {
   entry: "./src/index.jsx",
 
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve("dist"),
     assetModuleFilename: 'assets/[hash][ext][query]'
   },
 
@@ -75,3 +75,6 @@ module.exports = {
     })
   ],
 };
+
+
+export default config;

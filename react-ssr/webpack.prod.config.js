@@ -1,6 +1,8 @@
-const sharedConfig = require("./webpack.shared.config");
+import sharedConfig from "./webpack.shared.config.js";
 
-module.exports = {
+const config = {
   ...sharedConfig,
   mode: "production",
 };
+
+export default config;

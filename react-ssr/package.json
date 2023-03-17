@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Server Side rendering for React Application",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config=webpack.prod.config.js",
