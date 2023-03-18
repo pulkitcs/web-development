@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Server Side rendering for React Application",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config=webpack.prod.config.js",
-    "start": "webpack serve --config=webpack.dev.config.js",
+    "start": "webpack serve --config=webpack.shared.config.js",
     "server": "npm run build && node ./server/index.js"
   },
   "author": "pulkit.cs@gmail.com",
