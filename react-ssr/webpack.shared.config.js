@@ -9,7 +9,7 @@ const config = {
   entry: "./src/index.jsx",
 
   output: {
-    filename: "bundle.js",
+    filename: "js/bundle.js",
     path: path.resolve("dist"),
     assetModuleFilename: 'assets/[hash][ext][query]'
   },
@@ -18,6 +18,7 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
+        include: /src/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -25,6 +26,7 @@ const config = {
       },
       {
         test: /\.(tsx|ts)$/,
+        include: /src/,
         exclude: /node_modules/,
         use: {
           loader: "ts-loader",
@@ -32,6 +34,7 @@ const config = {
       },
       {
         test: /\.(css|less)$/,
+        include: /src/,
         exclude: /node_modules/,
         use: [
           {
@@ -70,8 +73,8 @@ const config = {
     new ESLintPlugin(),
     new HTMLWebpackPlugin({ template: "./public/index.html" }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css",
+      filename: "css/[name].css",
+      chunkFilename: "css/[id].css",
     })
   ],
 };
