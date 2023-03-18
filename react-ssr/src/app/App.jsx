@@ -1,5 +1,5 @@
-// import React from "react";
-// import styles from './App.less';
+import React from "react";
+import styles from './App.less';
 
 // const Comp = ({ type }: { type: string }) => <div className={styles.heading}>{type}</div>;
 
@@ -7,6 +7,6 @@
 
 // export default App;
 
-const App = () => "This does Work";
+const App = () => <div className={styles.heading}>This does Work</div>;
 
 export default App;
