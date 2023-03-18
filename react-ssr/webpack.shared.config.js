@@ -8,7 +8,7 @@ const devMode = process.env.NODE_ENV !== "production";
 const config = {
   entry: "./src/index.jsx",
   mode: "development",
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   devServer: {
     port: 3000,
     watchContentBase: true,
