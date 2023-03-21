@@ -8,7 +8,7 @@ const devMode = process.env.NODE_ENV !== "production";
 const config = {
   entry: "./src/index.jsx",
   mode: "development",
-  devtool: 'eval',
+  devtool: devMode ? 'eval' : false,
   devServer: {
     port: 3000,
     watchContentBase: true,
@@ -77,7 +77,7 @@ const config = {
   // },
 
   output: {
-    filename: "js/bundle.js",
+    filename: "js/bundle-client.js",
     path: path.resolve("dist"),
     assetModuleFilename: 'assets/[hash][ext][query]',
   },
@@ -91,8 +91,6 @@ const config = {
     }),
     // new statWriter(),
   ],
-
-  target: "web",
 };
 
 // es5 implementation of a class
