@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config=webpack.prod.config.js",
+    "build": "npm run build-client && npm run build-server",
+    "build-client": "webpack --config=webpack.client.config.js",
+    "build-server": "webpack --config=webpack.server.config.js",
     "start": "webpack serve --config=webpack.shared.config.js",
     "server": "npm run build && node ./server/index.js"
   },
