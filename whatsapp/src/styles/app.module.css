@@ -1,0 +1,19 @@
+.contentBox {
+  background-color: whitesmoke;
+  max-width: 1500px;
+  margin: 1.8rem auto;
+  height: calc(100vh - 1.8rem);
+  font-size: 1.6rem;
+  box-shadow: 0 6px 18px rgba(var(--shadow-rgb),.05); 
+}
+
+.container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--app-background-stripe);
+  height: 127px;
+  width: 100%;
+  z-index: -1;
+}

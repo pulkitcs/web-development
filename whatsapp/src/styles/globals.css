@@ -1,0 +1,27 @@
+:root {
+  --bg-black: #000000;
+  --app-background-stripe: #00a884;
+  --app-background: #eae6df;
+  --app-background-deeper: #d1d7db;
+  --shadow-rgb: 11,20,26;
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;;
+}
+
+body {
+  background-color: var(--app-background);
+  background-image: linear-gradient(180deg,var(--app-background),var(--app-background-deeper));
+  height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
