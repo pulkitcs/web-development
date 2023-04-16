@@ -1,8 +1,8 @@
 .contentBox {
   background-color: whitesmoke;
   max-width: 1500px;
-  margin: 1.8rem auto;
-  height: calc(100vh - 1.8rem);
+  width: 100vw;
+  height: 96vh;
   font-size: 1.6rem;
   box-shadow: 0 6px 18px rgba(var(--shadow-rgb),.05); 
 }
