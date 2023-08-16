@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import styles from "./App.module.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [text, setText] = useState('');
+  const [messages, setMessage] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  function handleAddMessage() {
+    if (text.trim().length !== 0) {
+
+      setMessage([...messages, { text, id: Date.now() }]);
+
+      setText('');
+    }
+  }
+
+  function handleDeleteMessage(deleteId: string) {
+    const filteredMessages = messages.filter(({ id }) => id !== deleteId);
+
+    setMessage(filteredMessages);
+  }
+
+  return <div className={styles.container}>
+    <section className={styles.box}>
+      {messages.map(({ text, id }, index) => <div key={index} className={styles.messageBox}>{text}<span className={styles.closeButton} onClick={() => handleDeleteMessage(id)}>X</span></div>)}
+    </section>
+    <footer className={styles.footer}>
+      <input value={text} className={styles.input} type="text" placeholder="Please type your message" onChange={(e) => setText(e.target.value)} />
+      <button className={styles.button} type="button" title="send" onClick={handleAddMessage}>Send</button>
+    </footer>
+  </div>;
 }
 
-export default App
+export default App;
