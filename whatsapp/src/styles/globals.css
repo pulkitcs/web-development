@@ -4,6 +4,10 @@
   --app-background: #eae6df;
   --app-background-deeper: #d1d7db;
   --shadow-rgb: 11, 20, 26;
+  --background-default-hover: #f5f6f6;
+  --border-list: #e9edef;
+  --panel-header-background: #f0f2f5;
+  --panel-background-lighter: #f7f8fa;
   font-size: 10px;
 }
 

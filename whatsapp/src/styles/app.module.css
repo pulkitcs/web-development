@@ -1,8 +1,8 @@
 .contentBox {
-  background-color: whitesmoke;
-  max-width: 1500px;
+  background-color: var(--panel-header-background);
+  max-width: 1600px;
   width: 100vw;
-  height: 96vh;
+  height: 95vh;
   font-size: 1.6rem;
   box-shadow: 0 6px 18px rgba(var(--shadow-rgb),.05); 
 }
