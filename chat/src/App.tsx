@@ -1,20 +1,25 @@
 import { useState } from 'react';
 import styles from "./App.module.css";
 
-function App() {
-  const [text, setText] = useState('');
-  const [messages, setMessage] = useState([]);
+type messageType = {
+  text: string;
+  id: number;
+}
+
+function App():React.ReactNode {
+  const [text, setText] = useState<string>('');
+  const [messages, setMessage] = useState<messageType[]>([]);
 
   function handleAddMessage() {
     if (text.trim().length !== 0) {
-
+      
       setMessage([...messages, { text, id: Date.now() }]);
 
       setText('');
     }
   }
 
-  function handleDeleteMessage(deleteId: string) {
+  function handleDeleteMessage(deleteId: number) {
     const filteredMessages = messages.filter(({ id }) => id !== deleteId);
 
     setMessage(filteredMessages);
