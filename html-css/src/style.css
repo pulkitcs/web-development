@@ -1,0 +1,28 @@
+:root, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#app, main {
+ height: inherit;
+ width: inherit;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.container {
+  font: bold 16px/24px arial;
+  height: 200px;
+  width: 200px;
+  border: solid thin red;
+}
+
+/* .container1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
