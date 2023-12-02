@@ -1,6 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Link  } from 'react-router-dom';
+import { lazy, LazyExoticComponent, Suspense } from 'react';
 import "./App.css";
 
+const Home: LazyExoticComponent<() => React.ReactNode> = lazy(() => import('./components/Home'));
+const About = lazy(() => import('./components/AboutUs'));
+const Contact = lazy(() => import('./components/ContactUs'));
 
 function App() : React.ReactNode {
   return <Router>
@@ -11,11 +15,13 @@ function App() : React.ReactNode {
         <Link to="/contact-us">Contact Us</Link>
       </nav>
       <main>
-        <Routes>
-          <Route path='/' element={<div>This is the Home Page</div>} />
-          <Route path='/about-us' element={<div>About Us Page</div>} />
-          <Route path='/contact-us' element={<div>Contact Us Page</div>} />
-        </Routes> 
+        <Suspense fallback={<div>loading</div>}>
+          <Routes>
+            <Route path='/about-us' element={<About />} />
+            <Route path='/contact-us' element={<Contact />} />
+            <Route path='*' element={<Home />} />
+          </Routes>
+        </Suspense>
       </main>
     </section>
   </Router>
