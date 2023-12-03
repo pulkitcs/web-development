@@ -1,11 +1,14 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpackEntries = require("./webpack.entries.js");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    ...webpackEntries
+  },
   output: {
-    path: path.join(__dirname, "/build"),
-    filename: "index.js",
+    asyncChunks: true,
+    path: path.join(__dirname, "/public/assets"),
+    filename: "[name].js",
   },
   module: {
     rules: [
@@ -26,9 +29,5 @@ module.exports = {
   resolve: {
     extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    })
-  ]
+  plugins: []
 };

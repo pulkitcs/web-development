@@ -1,9 +1,11 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["es5", "DOM"],
+    "noEmit": false,
     "target": "es5",
     "sourceMap": true,
-    "jsx": "react",
-    "noEmit": false,
   }
 }

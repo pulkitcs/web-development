@@ -1,20 +1,35 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpackEntries = require("./webpack.entries.js");
 const webpack = require("webpack");
 
+// for creating dynamic pages
+// const pages = [...Object.keys(webpackEntries).map((name) => new HtmlWebpackPlugin({
+//   filename: `${name}.html`,
+//   chunks: [name],
+//   template: `./public/${name}.html`,
+// }))];
+
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    ...webpackEntries,
+  },
   devtool: "source-map",
   output: {
-    path: path.join(__dirname, "/build"),
-    filename: "index.js",
+    path: path.join(__dirname, "/public/assets"),
+    filename: "[name].js",
   },
   devServer: {
     contentBase: path.join(__dirname, "/src"),
     hot: true,
     open: true,
     port: 3001,
+    proxy: {
+      '*': {
+        target: 'http://localhost/public',
+      }
+    },
+    publicPath: '/public/assets/'
   },
   module: {
     rules: [
@@ -38,8 +53,5 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // new ReactRefreshWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
   ],
 };
