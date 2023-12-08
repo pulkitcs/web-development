@@ -16,7 +16,7 @@ Welcome to my web development repository.
 
  ### Projects
 
- - [Webpack Bundling for Typescript](https://github.com/pulkitcs/web-development/tree/master/bundling)
+ - [Webpack Bundling for Typescript with PHP and HMR](https://github.com/pulkitcs/web-development/tree/master/bundling)
  - [Simple Toast or Custom Popup](https://github.com/pulkitcs/web-development/tree/master/custom-popup)
  - [Simple Image Caurousel](https://github.com/pulkitcs/web-development/tree/master/image-slider)
  - [Simple Profile Layout Application](https://github.com/pulkitcs/web-development/tree/master/profile-viewer)
