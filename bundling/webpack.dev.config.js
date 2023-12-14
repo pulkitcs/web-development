@@ -20,7 +20,7 @@ module.exports = {
     filename: "[name].js",
   },
   devServer: {
-    contentBase: path.join(__dirname, "/src"),
+   
     hot: true,
     open: true,
     port: 3001,
@@ -29,7 +29,10 @@ module.exports = {
         target: 'http://localhost/public',
       }
     },
-    publicPath: '/public/assets/'
+    static: {
+      publicPath: '/public/assets/',
+      directory: path.join(__dirname, "/src"),
+    }
   },
   module: {
     rules: [
