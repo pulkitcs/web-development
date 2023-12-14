@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: arial 10px/16px;
+}
+
+#app h1 {
+  margin-bottom: 10px;
+}
+
+#app input, #app select {
+  display: inline-block;
+  font: arial 14px/20px;
+  padding: 3px 5px;
+}
+
+#app {
+  padding: 10px;
+}
+
+#app label {
+  display: inline-block;
+  min-width: 200px;
+}
+
+#app fieldset {
+  padding: 5px;
+  border: none;
+}
+
+#app button {
+  font: arial 14px/20px;
+  padding: 5px 10px 5px;
+  margin: 0 5px;
+}
+
+#app .buttonContainer {
+  margin-top: 10px;
+}
+
+h2 {
+  margin: 50px 0 20px;
+}
+
+#table {
+
+}
+
+#table th, #table td {
+  padding: .2rem;
+}
