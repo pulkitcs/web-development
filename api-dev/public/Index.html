@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <title>Crud Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="preload" href="./assets/styles/style.css" as="style" /> 
+  <link rel="preload" href="./assets/scripts/script.js" as="script" />
+  <link rel="stylesheet" href="./assets/styles/style.css" />
+  <script defer src="./assets/scripts/script.js"></script>
+  <body>
+    <main id="app">
+      <h1>Registration</h1>
+      <form id="form">
+        <fieldset>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Please enter your Name" required>
+        </fieldset>
+        <fieldset>
+          <label for="age">Age</label>
+          <input title="Age" type="number" id="age" min="18" value="18" required/>
+        </fieldset>
+        <fieldset>
+          <label for="gender">Gender</label>
+          <select title="gender" id="gender" required>
+            <option value="male">Male</option>
+            <option value="female" selected>Female</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label for="subscribe">Do you wish to subscribe?</label>
+          <input title="subscribe" type="checkbox" id="subscribe" />
+        </fieldset>
+        <div class="buttonContainer">
+          <button type="reset">Reset</button>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <h2>Details</h2>
+        <table id="table" border="1" cellspacing="0" cellpadding="5">
+          <thead>
+            <tr><th>Full Name</th><th>Age</th><th>Gender</th><th>Do you wish to subscribe?</th></tr>
+          </thead>
+          <tbody id="tbody">
+
+          </tbody>
+        </table>
+      </h2>
+    </main>
+  </body>
+</html>
