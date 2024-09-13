@@ -1,0 +1,13 @@
+
+body {
+  background-image: linear-gradient(to left, #468CB1, #5D78ED);
+  background-size: contain;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
