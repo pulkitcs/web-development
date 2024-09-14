@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node server",
+    "dev": "tsx server",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
@@ -16,7 +16,7 @@
     "express": "^4.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sirv": "^2.0.4"
+    "tsx": "^4.19.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

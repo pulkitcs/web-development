@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import bodyParser from 'body-parser';
 import express from 'express'
 import { Transform } from 'node:stream'
-import router from "./server/router.js";
+import router from "./server/router.ts";
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'

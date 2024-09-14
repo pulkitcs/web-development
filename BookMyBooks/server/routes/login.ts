@@ -1,6 +1,9 @@
 import path from "node:path";
 import express from 'express';
 
+// Import types
+import { credentials } from "./login-types";
+
 const loginRouter = express.Router();
 
 loginRouter.use('/', function(req, res, next){
@@ -10,7 +13,7 @@ loginRouter.use('/', function(req, res, next){
   res.sendFile(path.resolve('./public/login.html'));
 })
 .post('/', function(req, res) {
-  const { body: { username, password }} = req;
+  const { body: { username, password }}:{ body: credentials } = req;
   console.table({
     username,
     password
