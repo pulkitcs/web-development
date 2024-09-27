@@ -6,7 +6,7 @@
     <meta name="keywords" content="ONLINE,BOOKS,STORE,LEARNING">
     <meta name="author" content="pulkit.cs@gmail.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to BookMyBooks</title>
+    <title>=BookMyBooks - About Us</title>
     <?php
       require_once("./partials/font.php");
       require_once("./partials/styles.php");
@@ -16,7 +16,7 @@
     <?php
       require_once("./partials/full-header.php");
     ?>
-    <main class="main container">
+    <main class="main">
     <?php
       require_once("./configs/app-config.php");
       require_once("./classes/Database.php");
