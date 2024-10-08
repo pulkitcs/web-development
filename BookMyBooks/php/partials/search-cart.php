@@ -87,14 +87,21 @@
 
 <div class="search-cart">
   <form class="search">
-    <select class="choose">
-      <option value="All">All</option>
-      <option value="">English</option>
-      <option value="">Physics</option>
-      <option value="">Chemistry</option>
-      <option value="">Maths</option>
-      <option value="">Biology</option>
-    </select>
+    <?php 
+      require_once("./configs/app-config.php");
+      require_once("./classes/Database.php");
+
+      $db = new Database($appConfig);
+      $result = $db->getCategories();
+      $string = '<select class="choose"><option value="All">All</option>';
+      
+      for($i=0; $i < count($result); ++$i) {
+        $name = $result[$i]['name'];
+        $string = $string."<option value=".$name.">".$name."</option>";
+      }
+
+      echo $string.'</select>';
+    ?>
     <input type="text" name="search" class="search-box" placeholder="Enter keywords to search.." />
     <button class="search-submit" name="submit" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
   </form>

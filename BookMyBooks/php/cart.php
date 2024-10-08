@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php require_once("./partials/session.php") ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,9 +21,10 @@
     <?php
       require_once("./configs/app-config.php");
       require_once("./classes/Database.php");
+      
 
-      $db = new Database($appConfig);
-      $result = $db->getAllBooks();
+      //$db = new Database($appConfig);
+      // $result = $db->getAllBooks();
     ?>
     <?php 
       print_r($result);

@@ -12,7 +12,7 @@
 <header class="header">
   <?php require_once("./partials/nav-user.php") ?>
   <div class="dark-gray-bg">
-    <div class="searchAndCart container">
+    <div class="searchAndCart bmb-container">
       <?php require_once("./partials/logo.php") ?>
       <?php require_once("./partials/search-cart.php") ?>
     </div>

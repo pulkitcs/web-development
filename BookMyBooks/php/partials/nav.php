@@ -66,7 +66,7 @@
   }
 
   .navigation .nav > li {
-    margin-right: 2rem;
+    margin-right: .5rem;
     color: var(--bg-light-highlight);
   }
   
@@ -87,7 +87,7 @@
     color: inherit;
   }
 </style>
-<div class="navigation container">
+<div class="navigation bmb-container">
   <nav>
     <ul class="nav">
     </ul>
@@ -104,7 +104,7 @@
         $string = "<li><a href='/home.php'>All</a></li>";
         
         for($i=0; $i < count($result); ++$i) {
-          $name = $result[$i]['Name'];
+          $name = $result[$i]['name'];
           $string = $string."<li><a href='?category=".$name."'>".$name."</a></li>";
         }
 
@@ -118,9 +118,15 @@
     const nav = document.querySelector('.navigation .nav');
     const properties = [
       { name: 'Home', url: '/index.php', icon: "fa fa-home"}, 
+      { name: 'My Cart', url: '/cart.php', icon: "fa fa-shopping-cart"},
       { name: 'About Us', url: '/aboutus.php', icon: "fa fa-question-circle"},
       { name: 'Contact Us', url: '/contactus.php', icon: "fa fa-phone-square"},
     ];
+
+    const isAdmin = <?= isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0 ?>;
+
+    if(isAdmin)
+      properties.push({ name: 'Manage', url: '/manage.php', icon: "fa fa-pencil-square" });
 
     const elems = properties.map(({name, url, icon}) => {
       const isActive = (!window.location.href.includes('php') && name === 'Home')

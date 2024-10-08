@@ -10,6 +10,7 @@
   --background-gray: #cccccc;
   --background-white-smoke: #f4f4f4;
   --background-cream: #E6F0DC;
+  --bg-red: #ee3124;
   --color-black: #1e1e1e;
   --color-1xlight-black: #333333;
   --color-2xlight-black: #666666;
@@ -33,7 +34,7 @@ body {
   height: 100%;
 }
 
-.container {
+.bmb-container {
   padding: 1rem;
   margin: 0 auto;
   max-width: 1710px;

@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +17,7 @@
     <?php
       require_once("./partials/full-header.php");
     ?>
-    <main class="main">
+    <main class="bmb-container main">
     <?php
       require_once("./configs/app-config.php");
       require_once("./classes/Database.php");

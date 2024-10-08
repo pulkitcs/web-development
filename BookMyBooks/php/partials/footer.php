@@ -7,5 +7,5 @@
 </style>
 
 <footer class="footer">
-  <div class="container"> Book My Books Pvt Ltd © 2024 All Rights Reserved. Created by pulkit.cs@gmail.com</div>
+  <div class="bmb-container"> Book My Books Pvt Ltd © 2024 All Rights Reserved. Created by pulkitchandra@outlook.com</div>
 </footer>
