@@ -3,7 +3,7 @@
     position: relative;
     background-color: var(--bg-light-highlight);
     padding: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     display: flex;
     align-items: center;
     border-top-left-radius: .4rem;
@@ -61,7 +61,7 @@
     list-style-type: none;
     display: flex;
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
     text-transform: UPPERCASE;
   }
 
