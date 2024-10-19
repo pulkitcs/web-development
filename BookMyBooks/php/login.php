@@ -65,9 +65,9 @@
       <h3>ENTER YOUR DETAILS</h3>
         <input name="fullname" type="text" required placeholder="Full Name" />
         <input name="username" type="email" required placeholder="Email as User Name" />
-        <input name="password" id="password" type="password" required placeholder="Password" pattern="^[@_a-zA-Z0-9]{6,}"/>
-        <label for="password">Please user atleast 6 characters, atleast 1 capital, 1 number and 1 special character "@" or "_". </label> 
-        <input name="repassword" type="password" required placeholder="Re-Password" pattern="^[@_a-zA-Z0-9]{6,}"/>
+        <input name="password" id="password" type="password" required placeholder="Password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@_]).{6,}$"/>
+        <label for="password">Please user atleast 6 characters, atleast 1 capital, 1 lower case, 1 number and 1 special character "@" or "_". </label> 
+        <input name="repassword" type="password" required placeholder="Re-Password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@_]).{6,}$"/>
         <textarea name="address" required placeholder="Your address"></textarea>
         <select name="country" value="India"><option value="India">India</option></select>
         <input name="mobile" type="text" required placeholder="Mobile Number" pattern="[0-9]{10,10}"/>
@@ -87,7 +87,7 @@
       <div class="form-box">
         <h3>LOGIN WITH YOUR CREDENTIALS</h3>
         <input name="username" type="email" required placeholder="Username" />
-        <input name="password" type="password" required placeholder="Password" pattern="^[@_a-zA-Z0-9]{6,}"/>
+        <input name="password" type="password" required placeholder="Password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@_]).{6,}$"/>
         <button type="submit">Sign In</button>
         <p class="login-help"><a href="./login.php?type=new">New User</a> or <a href="#" class="login-open-dialog">Forgot passoword</a> 
       </div>
@@ -268,10 +268,13 @@
           }
 
           function checkPassword() {
-            registerForm?.addEventListener('submit', () => {
+            registerForm?.addEventListener('submit', (e) => {
               const isPasswordMatching = registerForm['password'].value === registerForm['repassword'].value;
 
-              if(!isPasswordMatching) alert('[Error] The field password and re-password donot match, please enter the same value');
+              if(!isPasswordMatching) {
+                e.preventDefault();
+                alert('[Error] The field password and re-password donot match, please enter the same value');
+              }
 
               return isPasswordMatching;
             });

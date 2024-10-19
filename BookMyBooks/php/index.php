@@ -25,9 +25,46 @@
       $db = new Database($appConfig);
       $result = $db->getAllBooks();
     ?>
-    <?php 
-      print_r($result);
-    ?>
+    <div class="sub-section">
+      <div class="side-control">
+        <p class="side-heading">Filter</p>
+      </div>
+      <div>
+        <h1 class="heading">Welcome</h1>
+      <?php
+        $count = sizeOf($result);
+        if($count === 0) echo '<p>No Items Found </p>';
+        else {
+          $str = "";
+          for($i = 0; $i < $count; $i++) {
+            $ISBN = $result[$i]['ISBN'];
+            $name = $result[$i]['name'];
+            $price = $result[$i]['price'];
+            $author = $result[$i]['author'];
+            $publisher = $result[$i]['publisher'];
+            $publicationYear = $result[$i]['publication_year'];
+            $language = $result[$i]['language'];
+            $category = $result[$i]['category'];
+            $thumbnail = $result[$i]['thumbnail'];
+            
+            $str.= "<div>
+              <figure>
+                <img src='".$thumbnail."' alt='".$name."' height='250' width='200' />
+              </figure>
+              <div>
+                <p>".$name."</p>
+                <p>by ".$author." | ".$language." | ".$publicationYear."</p>
+                <p>".$publisher."</p>
+                <p>".$price."</p>
+              </div>
+            </div>";
+          }
+
+          echo $str;
+        }
+      ?>
+      </div>
+    </div>
     </main>
     <?php require_once("./partials/footer.php") ?>
   </body>

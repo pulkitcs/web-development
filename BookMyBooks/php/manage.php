@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php require_once("./partials/admin-session.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,21 +13,6 @@
       require_once("./partials/styles.php");
     ?>
     <style>
-      .sub-section {
-        margin-top: 2rem;
-        display: flex;
-        gap: 4rem;
-      }
-
-      .sub-section > .nav {
-        width: 300px;
-      }
-
-      .nav-heading {
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-      }
-
       .sub-section > .nav ul {
         list-style: none;
         border:  solid thin var(--background-gray);
@@ -51,13 +36,6 @@
       .sub-section >.nav li a > i {
         margin-right: .3rem;
       }
-
-      .heading {
-        font-weight: 400;
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        text-transform: capitalize;
-      }
     </style>
   </head>
   <body>
@@ -66,8 +44,8 @@
     ?>
     <main class="main bmb-container">
       <div class="sub-section">
-        <nav class="nav">
-          <p class="nav-heading">Navigate To</p>
+        <nav class="nav side-control">
+          <p class="side-heading">Navigate To</p>
         </nav>
         <section>
           <?php
@@ -93,16 +71,6 @@
               }
             }
           ?>
-        <?php
-          require_once("./configs/app-config.php");
-          require_once("./classes/Database.php");
-
-          $db = new Database($appConfig);
-          $result = $db->getAllBooks();
-        ?>
-        <?php 
-          print_r($result);
-        ?>
         </section>
       </div>
     </main>
