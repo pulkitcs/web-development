@@ -56,3 +56,71 @@ body {
   border-left: solid thin var(--background-gray);
   border-right: solid thin var(--background-gray);
 }
+
+.sub-section {
+  margin-top: 2rem;
+  display: flex;
+  gap: 4rem;
+}
+
+.sub-section > .side-control {
+  width: 300px;
+}
+
+.side-control > .side-heading {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.heading {
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-transform: capitalize;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table thead {
+  border-collapse: collapse;
+  font-size: 1.1rem;
+  font-weight: 400;
+  background-color: var(--background-cream);
+}
+
+.table tbody {
+  border-collapse: collapse;
+  font-size: 1.1rem;
+}
+
+.table thead th {
+  border-collapse: collapse;
+  text-align: left;
+  padding: .4rem;
+  font-weight: inherit;
+  font-size: inherit;
+  border: solid thin var(--background-gray);
+}
+
+.table td {
+  border-collapse: collapse;
+  text-align: left;
+  padding: .4rem;
+  font-weight: inherit;
+  font-size: inherit;
+  border: solid thin var(--background-gray);
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: var(--background-white-smoke);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.table .edit-link {
+  text-decoration: none;
+}
