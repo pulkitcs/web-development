@@ -118,7 +118,7 @@
     const nav = document.querySelector('.navigation .nav');
     const properties = [
       { name: 'Home', url: '/index.php', icon: "fa fa-home"}, 
-      { name: 'My Cart', url: '/cart.php', icon: "fa fa-shopping-cart"},
+      { name: 'My Cart & Orders', url: '/cart.php', icon: "fa fa-shopping-cart"},
       { name: 'About Us', url: '/aboutus.php', icon: "fa fa-question-circle"},
       { name: 'Contact Us', url: '/contactus.php', icon: "fa fa-phone-square"},
     ];

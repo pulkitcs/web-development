@@ -92,8 +92,16 @@
       return $result[0];
     }
 
-    function adminUpdateBookDetails($id) {
-      
+    function addBook($ISBN, $title, $price, $author, $publisher, $publication_year, $language, $category, $thumbnail, $disabled, $stock, $discount) {
+      $sql="INSERT INTO BOOKS (ISBN, name, price, author, publisher, publication_year, language, category, thumbnail, disabled, stock, discount) VALUES ('$ISBN', '$title', '$price', '$author', '$publisher', '$publication_year', '$language', '$category', '$thumbnail', '$disabled', '$stock', '$discount')";
+
+      return $this->executeSQL($sql);
+    }
+
+    function adminUpdateBookDetails($id, $ISBN, $title, $price, $author, $publisher, $publication_year, $language, $category, $thumbnail, $disabled, $stock, $discount) {
+      $sql = "UPDATE books SET ISBN='$ISBN', name='$title', price='$price', author='$author', publisher='$publisher', publication_year='$publication_year', language='$language', category='$category', thumbnail='$thumbnail', disabled='$disabled', stock='$stock', discount='$discount' WHERE ISBN='$id'";
+
+      return $this->executeSQL($sql);
     }
 
     function createUser($fullname, $username, $repassword, $address, $country, $mobile) {
@@ -112,6 +120,23 @@
       $sql = "UPDATE users SET name='".$name."', email='".$email."', password='".$repassword."', country='".$country."', mobile='".$mobile."', address='".$address."', isAdmin='".$admin."', disabled='".$disabled."', admin_comments='".$comments."' where email='".$id."'";
 
       return $this->executeSQL($sql);
+    }
+
+    function getCart($email) {
+      $sql = 'SELECT cart FROM users WHERE email="'.$email.'"';
+      $result = $this->executeSQL($sql);
+
+      return $result[0];
+    }
+
+    function updateCart($email, $cart) {
+      // need to still encode here
+      $json = json_encode($cart);
+
+      $sql = 'UPDATE users SET cart='.$json.' WHERE email="'.$email.'"';
+      $result = $this->executeSQL($sql);
+
+      return $result;
     }
   }
 ?>

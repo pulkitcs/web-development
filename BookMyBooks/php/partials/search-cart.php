@@ -1,3 +1,27 @@
+<?php 
+  require_once("./configs/app-config.php");
+  require_once("./classes/Database.php");
+
+  $db = new Database($appConfig);
+
+  function getCategories($db) {
+    $result = $db->getCategories();
+    $string = '<select class="choose"><option value="All">All</option>';
+  
+    for($i=0; $i < count($result); ++$i) {
+      $name = $result[$i]['name'];
+      $string = $string."<option value=".$name.">".$name."</option>";
+    }
+
+    return $string.'</select>';
+  }
+
+  function getCartDetails($db) {
+    if(isset($_SESSION['email'])) {
+      return $db->getCart($_SESSION['email'])['cart'];
+    } else return array();
+  }
+?>
 <style>
 .search {
   display: flex;
@@ -32,7 +56,6 @@
   border: solid thin var(--background-gray);;
 }
 
-
 .search-submit {
   border: none;
   background-color: var(--bg-light-highlight);
@@ -62,6 +85,8 @@
   cursor: pointer;
   height: 3rem;
   margin-left: 3rem;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 .search-cart-button > i {
@@ -87,29 +112,36 @@
 
 <div class="search-cart">
   <form class="search">
-    <?php 
-      require_once("./configs/app-config.php");
-      require_once("./classes/Database.php");
-
-      $db = new Database($appConfig);
-      $result = $db->getCategories();
-      $string = '<select class="choose"><option value="All">All</option>';
-      
-      for($i=0; $i < count($result); ++$i) {
-        $name = $result[$i]['name'];
-        $string = $string."<option value=".$name.">".$name."</option>";
-      }
-
-      echo $string.'</select>';
-    ?>
+    <?= getCategories($db) ?>
     <input type="text" name="search" class="search-box" placeholder="Enter keywords to search.." />
     <button class="search-submit" name="submit" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
   </form>
-  <button class="search-cart-button">
+  <a href="./cart.php" class="search-cart-button">
     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     <span>
       <span>SHOPPING CART</span>
-      <span>₹0</span>
+      <span id="cart-cost">₹0</span>
     </span>
-  </button>
+  </a>
 </div>
+<script>
+  function updateCartIcon() {
+    window.bmb = {};
+    const elem = document.getElementById('cart-cost');
+    window.bmb['cart'] = JSON.parse(<?= json_encode(getCartDetails($db)) ?>) || {};
+
+    const {cart} = window.bmb;
+    const priceList = [];
+
+    for(let i in cart) {
+      const {price, quantity}  = cart[i];
+      priceList.push({price, quantity});
+    }
+
+    const cost = priceList.reduce((agg, { price, quantity }) => (agg + (price*quantity)), 0);
+    elem.innerHTML = `₹${cost}`;
+    window.bmb['cart-cost'] = cost;
+  }
+
+  updateCartIcon();
+</script>

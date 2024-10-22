@@ -7,15 +7,56 @@
   $create = "";
   $edit = "";
 
-  function createBook() {
+  function convertImageToBase64($file) {
+    $path = $file['tmp_name'];
+    $type = $file['type'];
+    $data = file_get_contents($path);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
+    return $base64;
   }
    
   function checkOption($value, $option) {
     return $value === $option ? "selected" : "";
   }
 
-  function editBook($db) {
+  function addBookView($db) {
+    $categories = $db->adminGetCategories();
+    $categoryStr = "";
+
+    for($i=0; $i < sizeof($categories); ++$i) {
+      $categoryStr.="<option value='".$categories[$i]['name']."'>".$categories[$i]['name']."</option>";
+    }
+
+    return '
+    <h2>Add Book</h2>
+    <form name="add_book" class="form" action="./manage.php?type=books" method="post" enctype="multipart/form-data">
+      <div class="form-box">
+        <input name="ISBN" type="text" required placeholder="ISBN" title="ISBN"/>
+        <input name="title" type="text" required placeholder="Title" title="Title" />
+        <input name="price" type="number" required placeholder="Price" title="Price" />
+        <input name="author" type="text" required placeholder="Author" title="Author" />
+        <input name="publisher" type="text" required placeholder="Publisher" title="Publisher" />
+        <input name="publication-year" type="number" required placeholder="Publication Year" title="Publication Year"/>
+        <input name="language" type="text" readonly value="English" required placeholder="Language" title="Language"/>
+        <select name="category" title="Category">'.$categoryStr.'</select>
+        <img height="300" id="img-preview" width="200" alt="Uploaded image" />
+        <input id="file-input" name="new-thumbnail" type="file" placeholder="Thumbnail Image" title="Thumbnail Image" accept="image/bmp, image/jpeg, image/png, image/gif" required />
+        <select name="disabled" title="Is disabled?">
+          <option value="0">Enabled</option>
+          <option value="1">Disabled</option>
+        </select>
+        <input name="stock" type="number" required placeholder="Current Stock" title="Current stock quantity" required/>
+        <input name="discount" type="number" placeholder="Discount" title="Discount"/>
+        <div>
+        <button class="add-button" type="submit">Add</button>
+        <button class="add-button" type="reset">Reset</button>
+        </div>
+      </div>
+    </form>';
+  }
+
+  function editBookView($db) {
     $ISBN = $_GET["id"];
     $result = $db->adminGetBookDetails($ISBN);
     $categories = $db->adminGetCategories();
@@ -40,7 +81,7 @@
 
     return'
     <h2>('.$title.')</h2>
-    <form name="edit_book" class="form" action="./manage.php?type=books" method="post">
+    <form name="edit_book" class="form" action="./manage.php?type=books" method="post" enctype="multipart/form-data">
       <div class="form-box">
         <input name="ISBN" type="text" required placeholder="ISBN" value="'.$ISBN.'" title="ISBN"/>
         <input name="id" type="hidden" value="'.$ISBN.'"/>
@@ -51,27 +92,62 @@
         <input name="publication-year" type="number" required placeholder="Publication Year" value="'.$publication_year.'" title="Publication Year"/>
         <input name="language" type="text" required placeholder="Language" value="'.$language.'" title="Language"/>
         <select name="category" title="Category">'.$categoryStr.'</select>
-        <img src="'.$thumbnail.'" alt="'.$title.'" />
-        <input name="thumbnail" type="file" required placeholder="Thumbnail Image" title="Thumbnail Image" accept="image/bmp, image/jpeg, image/png, image/gif"/>
+        <img id="img-preview" height="300" width="200" src="'.$thumbnail.'" alt="'.$title.'" />
+        <input id="file-input" name="new-thumbnail" type="file" placeholder="Thumbnail Image" title="Thumbnail Image" accept="image/bmp, image/jpeg, image/png, image/gif"/>
+        <input name="thumbnail" type="hidden" value="'.$thumbnail.'" />
         <select name="disabled" title="Is disabled?">
           <option value="0" '.checkOption($isDisabled, "0").'>Enabled</option>
           <option value="1" '.checkOption($isDisabled, "1").'>Disabled</option>
         </select>
         <input name="stock" type="number" required placeholder="Current Stock" value="'.$stock.'" title="Current stock quantity"/>
-        <input name="discount" type="number" required placeholder="Discount" value="'.$discount.'" title="Discount"/>
-        <button class="update" type="submit">Update</button>
+        <input name="discount" type="number" placeholder="Discount" value="'.$discount.'" title="Discount"/>
+        <div>
+          <button class="update" type="submit">Update</button>
+          <button class="update" type="reset">Reset</button>
+        </div>
       </div>
     </form>';
   }
 
   function updateBookDetails($db) {
+    $id = $_POST['id'];
+    $ISBN = $_POST['ISBN'];
+    $title = $_POST['title'];
+    $price = $_POST['price'];
+    $author = $_POST['author']; 
+    $publisher = $_POST['publisher'];
+    $publication_year = $_POST['publication-year'];
+    $language = $_POST['language'];
+    $category = $_POST['category'];
+    $thumbnail = isset($_FILES['new-thumbnail']) ? convertImageToBase64($_FILES['new-thumbnail']) : $_POST['thumbnail'];
+    $disabled = $_POST['disabled'];
+    $stock = $_POST['stock'];
+    $discount = $_POST['discount'];
 
+    $db->adminUpdateBookDetails($id, $ISBN, $title, $price, $author, $publisher, $publication_year, $language, $category, $thumbnail, $disabled, $stock, $discount);
+  }
+
+  function addBook($db) {
+    $ISBN = $_POST['ISBN'];
+    $title = $_POST['title'];
+    $price = $_POST['price'];
+    $author = $_POST['author']; 
+    $publisher = $_POST['publisher'];
+    $publication_year = $_POST['publication-year'];
+    $language = $_POST['language'];
+    $category = $_POST['category'];
+    $thumbnail = convertImageToBase64($_FILES['new-thumbnail']);
+    $disabled = $_POST['disabled'];
+    $stock = $_POST['stock'];
+    $discount = $_POST['discount'];
+
+    $db->addBook($ISBN, $title, $price, $author, $publisher, $publication_year, $language, $category, $thumbnail, $disabled, $stock, $discount);
   }
 
   function listBooks($db) {
     if(isset($_POST['id']))
       updateBookDetails($db);
-    else if(isset($_POST['id']))
+    else if(isset($_POST['ISBN']))
       addBook($db);
     else;
 
@@ -123,7 +199,7 @@
         $str.="
           <tr>
             <td>".$serialNo."</td>
-            <td><img src='".$thumbnail."' /></td>
+            <td><img src='".$thumbnail."' height='150' width='100'/></td>
             <td>".$ISBN."</td>
             <td>".$title."</td>
             <td>".$category."</td>
@@ -147,9 +223,9 @@
 
   if(isset($_GET['mode']))
     if($_GET['mode'] === 'edit')
-      $edit = editBook($db);
+      $edit = editBookView($db);
     else if($_GET['mode'] = 'create')
-      $create = createBook();
+      $create = addBookView($db);
     else $list = listBooks($db);
   else $list = listBooks($db);
 ?>
@@ -166,7 +242,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 .7rem;
+    margin: 0 .7rem 3rem .7rem;
   }
 
   .form-box > input[type], .form-box select, .form-box textarea {
@@ -180,14 +256,14 @@
     /* border: none; */
   }
 
-  .form-box > button[type=submit] {
+  .form-box button[type=submit], .form-box button[type=reset]  {
     padding: .5rem;
-    display: block;  
+    display: inline-block;  
     font-size: 1.2rem;
     border-radius: 5px;
     cursor: pointer;
     align-self: baseline;
-    margin-left: -.6rem;
+    margin: 0 10px
     /* border: none; */
   }
 
@@ -206,6 +282,10 @@
   .table {
     margin-top: 1.5rem;
   }
+
+  #img-preview {
+    border: solid thin var(--background-gray)
+  }
 </style>
 <div>
   <!-- <section></section> -->
@@ -221,3 +301,37 @@
     ?>
   </section>   
 </div>
+<script>
+  function init() {
+    const imgPreview = document.getElementById('img-preview');
+    const imageSelectBtn = document.getElementById('file-input');
+
+    function createPreview() {
+      imageSelectBtn?.addEventListener('change', function(e) {
+        imgPreview.setAttribute('src', null);
+
+        const { target } = e;
+        const [imgFile] = target['files'];
+        const reader = new FileReader();
+
+        reader.onload = function() {
+          imgPreview.setAttribute('src', reader.result);
+        }
+
+        reader.readAsDataURL(imgFile)
+      });
+    }
+
+    document.forms['add_book']?.addEventListener('reset', () => {
+      imgPreview.setAttribute('src', null);
+    })
+
+    document.forms['edit_book']?.addEventListener('reset', (e) => {
+      imgPreview.setAttribute('src', e.target['thumbnail'].value);
+    })
+
+    createPreview();
+  }
+
+  init();
+</script>
