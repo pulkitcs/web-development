@@ -92,26 +92,26 @@
     <ul class="nav">
     </ul>
   </nav>
-  <div class="categories">
+  <!-- <div class="categories">
     <i class="fa fa-list" aria-hidden="true"></i> ALL BOOK CATEGORIES
     <ul>
       <?php 
-        require_once("./configs/app-config.php");
-        require_once("./classes/Database.php");
+        // require_once("./configs/app-config.php");
+        // require_once("./classes/Database.php");
   
-        $db = new Database($appConfig);
-        $result = $db->getCategories();
-        $string = "<li><a href='/home.php'>All</a></li>";
+        // $db = new Database($appConfig);
+        // $result = $db->getCategories();
+        // $string = "<li><a href='/home.php'>All</a></li>";
         
-        for($i=0; $i < count($result); ++$i) {
-          $name = $result[$i]['name'];
-          $string = $string."<li><a href='?category=".$name."'>".$name."</a></li>";
-        }
+        // for($i=0; $i < count($result); ++$i) {
+        //   $name = $result[$i]['name'];
+        //   $string = $string."<li><a href='?category=".$name."'>".$name."</a></li>";
+        // }
 
-        echo $string;
+        // echo $string;
       ?>
     </ul>
-  </div> 
+  </div>  -->
 </div>
 <script>
   (function(){

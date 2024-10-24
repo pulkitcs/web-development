@@ -98,6 +98,33 @@
         margin: 0 10px;
         background-color: var(--background-cream);
       }
+
+      .filters {
+        font-size: 1.2rem;
+        margin-left: 1rem;
+        /* float: right; */
+      }
+
+      .filters form {
+        display: inline-block;
+      }
+
+      .filters label {
+        margin-right: .5rem;
+      }
+
+      .filters input {
+        margin-right: .2rem;
+      }
+      
+      .filters button, .search-reset {
+        margin-left: .5rem;
+        padding: .2rem;
+      }
+
+      .empty-result {
+        font-size: 1.2rem;
+      }
     </style>
   </head>
   <body>
@@ -109,8 +136,28 @@
       require_once("./configs/app-config.php");
       require_once("./classes/Database.php");
 
+      function getSelectedCategory($category) {
+        $currentCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
+        return $currentCategory === $category ? 'checked' : null;
+      }
+
+      $currentCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
+      $search = isset($_GET['search']) ? $_GET['search'] : null;
+
       $db = new Database($appConfig);
-      $result = $db->getAllBooks();
+      $result = $db->getAllBooks($currentCategory, $search);
+
+      $categories = $db->getCategories();
+      $categoryStr = "
+        <form name='category-filter' method='get'>
+          <input name='search' type='hidden' value=".$search." />
+          <input name='category' id='filter-all' type='radio' value='all' ".getSelectedCategory('all')."/><label for='filter-all'>All</label>";
+
+      for($i=0; $i < sizeof($categories); $i++) {
+        $categoryStr.= "<input id='filter-".$categories[$i]['name']."' ".getSelectedCategory($categories[$i]['name'])." name='category' type='radio' value='".$categories[$i]['name']."' /><label for='filter-".$categories[$i]['name']."'>".$categories[$i]['name']."</label>";
+      }
+
+      $categoryStr.="<button type='submit'>Apply</button><button type='button' onclick='window.location.href=`./index.php`'>Clear / Reset</button>";
     ?>
     <div class="sub-section">
       <!-- <div class="side-control">
@@ -118,15 +165,22 @@
       </div> -->
       <div class="content">
         <h1 class="heading">Welcome</h1>
-        <h2 class="sub-heading">Category: <?= isset($_GET['category']) ? $_GET['category'] : 'All' ?></h1>
+        <h2 class="sub-heading">Category: <?= isset($_GET['category']) ? $_GET['category'] : 'All' ?> <span class="filters"><?= $categoryStr ?></span></h1>
+        <h2 class="sub-heading"><?= isset($_GET['search']) ? "Search: ".$_GET['search']."<button class='search-reset' type='button' onclick='window.location.href=`./index.php`'>Clear / Reset</button>" : null ?></h2>
         <section class="card-container">
           <?php
             function discountedPrice($price, $discount) {
               return $price - ($price * ($discount / 100));
             }
 
+            if($result === null) {
+              echo '<p class="empty-result">No Items Found!</p>';
+              exit();
+            }
+
             $count = sizeOf($result);
-            if($count === 0) echo '<p>No Items Found </p>';
+
+            if($count === 0) echo '<p class="empty-result">No Items Found!</p>';
             else {
               $str = "";
               for($i = 0; $i < $count; $i++) {
@@ -184,7 +238,11 @@
               },
               body: JSON.stringify({ isbn, title, author, price: discountedPrice, quantity })
             })
-            .then(e => e.text())
+            .then(e => { 
+              const { status } = e;
+              if(status === 401) window.location.href="./login.php";
+              return e.json(); 
+            })
             .then(items => {
               alert('Item added, please check your Cart!');
               window.location.reload();

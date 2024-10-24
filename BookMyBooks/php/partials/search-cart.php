@@ -6,7 +6,7 @@
 
   function getCategories($db) {
     $result = $db->getCategories();
-    $string = '<select class="choose"><option value="All">All</option>';
+    $string = '<select name="category" class="choose"><option value="all">All</option>';
   
     for($i=0; $i < count($result); ++$i) {
       $name = $result[$i]['name'];
@@ -21,6 +21,8 @@
       return $db->getCart($_SESSION['email'])['cart'];
     } else return array();
   }
+
+  $search = isset($_GET['search']) ? $_GET['search'] : null; 
 ?>
 <style>
 .search {
@@ -36,7 +38,7 @@
   font-size: 1.2rem;
   line-height: 1.8rem;
   background-color: var(--background-cream);
-  width: 120px;
+  width: 150px;
   border: none;
   outline: none;
   border: solid thin var(--background-cream);;
@@ -111,10 +113,10 @@
 </style>
 
 <div class="search-cart">
-  <form class="search">
+  <form class="search" method="get">
     <?= getCategories($db) ?>
-    <input type="text" name="search" class="search-box" placeholder="Enter keywords to search.." />
-    <button class="search-submit" name="submit" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    <input type="text" name="search" class="search-box" placeholder="Enter keywords to search.." value="<?=$search?>"/>
+    <button class="search-submit" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
   </form>
   <a href="./cart.php" class="search-cart-button">
     <i class="fa fa-shopping-cart" aria-hidden="true"></i>

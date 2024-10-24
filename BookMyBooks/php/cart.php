@@ -98,9 +98,9 @@
         },
         body: JSON.stringify(window?.bmb?.cart)
       })
-      .then(e => e.text())
+      .then(e => e.json())
       .then(items => {
-        alert('Items deleted, please check your Cart!');
+        alert('Item deleted, please check your Cart!');
         window.location.reload();
       })
       .catch(e => console.error(e))

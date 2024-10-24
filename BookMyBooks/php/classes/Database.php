@@ -75,8 +75,17 @@
       return $this->executeSQL($sql);
     }
 
-    function getAllBooks() {
+    function getAllBooks($category, $search) {
       $sql = "SELECT * FROM books WHERE stock > 0 AND disabled = '0'";
+
+      if($category !== null && $category !== 'all') {
+        $sql .= "AND category = '".$category."'";
+      }
+
+      if($search !== null && $search !== '') {
+        $sql .= "AND name LIKE '%".$search."%' OR author like '%".$search."%' OR publisher like '%".$search."%'";
+      }
+
       return $this->executeSQL($sql);
     }
 
