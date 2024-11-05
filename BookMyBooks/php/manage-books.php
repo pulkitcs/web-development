@@ -153,8 +153,8 @@
 
     $result = $db->adminGetAllBooks();
     $count = sizeOf($result);
-  
-    if($count === 0) echo '<p>No Items Found </p>';
+
+    if($count === 0) echo "<p class='margin'><a class='button' href='./manage.php?type=books&mode=create'>Add Book</a></p><p>No Books Found!</p>";
     else {
       $str = "
       <a class='button' href='./manage.php?type=books&mode=create'>Add Book</a>
