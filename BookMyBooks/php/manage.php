@@ -36,6 +36,10 @@
       .sub-section >.nav li a > i {
         margin-right: .3rem;
       }
+
+      .margin {
+        margin-bottom: 1.5rem;
+      }
     </style>
   </head>
   <body>
