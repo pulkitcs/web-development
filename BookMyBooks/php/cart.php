@@ -75,7 +75,7 @@
               Delete <i class="fa fa-trash" aria-hidden="true" style="margin-left: 2px;"></i>
             </button>
           </p>
-          <p> Quantity(2) (₹${price} x 2) = ₹${price * 2} </p>
+          <p> Quantity(${quantity}) (₹${price} x ${quantity}) = ₹${price * quantity} </p>
         </div>`
       }
 
