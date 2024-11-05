@@ -49,7 +49,7 @@
       return '<div class="login-success-message"><strong>[Success] </strong>New User Created successfully!</div>
         <script>
           setTimeout(() => {
-            window.location.href = "/login";
+            window.location.href = "/login.php";
           }, 2000);
         </script>
       ';
