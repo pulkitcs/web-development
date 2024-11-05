@@ -239,7 +239,7 @@
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ isbn, title, author, price: discountedPrice, quantity })
+              body: JSON.stringify({ isbn, title, author, price: discountedPrice, quantity: parseInt(quantity) })
             })
             .then(e => { 
               const { status } = e;
