@@ -149,9 +149,12 @@
 
       $categories = $db->getCategories();
       $categoryStr = "
-        <form name='category-filter' method='get'>
-          <input name='search' type='hidden' value=".$search." />
-          <input name='category' id='filter-all' type='radio' value='all' ".getSelectedCategory('all')."/><label for='filter-all'>All</label>";
+        <form name='category-filter' method='get'>";
+      
+      if($search !== null) 
+        $categoryStr.= "<input name='search' type='hidden' value=".$search." />";
+          
+      $categoryStr .= "<input name='category' id='filter-all' type='radio' value='all' ".getSelectedCategory('all')."/><label for='filter-all'>All</label>";
 
       for($i=0; $i < sizeof($categories); $i++) {
         $categoryStr.= "<input id='filter-".$categories[$i]['name']."' ".getSelectedCategory($categories[$i]['name'])." name='category' type='radio' value='".$categories[$i]['name']."' /><label for='filter-".$categories[$i]['name']."'>".$categories[$i]['name']."</label>";
