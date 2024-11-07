@@ -147,5 +147,19 @@
 
       return $result;
     }
+
+    function getOrders($user) {
+      $sql = "select * from orders where user = '".$user."'";
+      $result = $this->executeSQL($sql);
+
+      return $result;
+    }
+
+    function adminGetOrders() {
+      $sql = "select * from orders";
+      $result = $this->executeSQL($sql);
+
+      return $result;
+    } 
   }
 ?>
