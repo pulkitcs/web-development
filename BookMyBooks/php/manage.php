@@ -40,6 +40,12 @@
       .margin {
         margin-bottom: 1.5rem;
       }
+
+      .page-heading {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        font-weight: 400;
+      }
     </style>
   </head>
   <body>
@@ -57,14 +63,14 @@
             $pages = array("orders" => "./manage-orders.php", "users" => "./manage-users.php", "books" => "./manage-books.php");
             $iconsClass = array("orders" => "fa fa-shopping-cart", "users" => "fa fa-users", "books" => "fa fa-book");
           ?>
-          <h1 class="heading">Manage <?= isset($_GET['type']) ? $_GET['type'] : $topics["default"] ?></h1>
+          <h1 class='page-heading'>Welcome Administrator</h1>
+          <h2 class="heading">Manage <?= isset($_GET['type']) ? $_GET['type'] : $topics["default"] ?></h2>
           <?php
             if(isset($_GET["type"])) {
               $pageType = strtolower($_GET["type"]);
 
               switch($pageType) {
                 case "orders":
-                default:
                   require_once($pages[$topics["default"]]);
                   break;
                 case "users":
@@ -72,7 +78,12 @@
                   break;
                 case "books":
                   require_once($pages[$topics["books"]]);
+                  break;
+                default:
+                  require_once($pages[$topics["default"]]);
               }
+            } else {
+              require_once($pages[$topics["default"]]);
             }
           ?>
         </section>

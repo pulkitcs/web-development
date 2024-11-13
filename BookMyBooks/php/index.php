@@ -32,7 +32,7 @@
         width: 230px;
         display: flex;
         justify-content: center;
-        border: solid thin var(--background-white-smokey);
+        border: solid thin var(--background-gray);
         background-color: var(--background-white-smoke);
         padding: 1rem;
       }
@@ -42,7 +42,8 @@
         flex-direction: column;
         flex-grow: 1;
         padding: 1rem;
-        border: solid thin var(--background-white-smoke);
+        border: solid thin var(--background-gray);
+        border-left: none;
       }
 
       .card-description > p {
@@ -213,6 +214,7 @@
                      <p class='category'>".$category." | ".$publicationYear."</p>
                     <p class='price'>".$discountedRate."".$discountPercentage."</p>
                     <p>Delivery in 3 days</p>
+                    <p>Cash on delivery only</p>
                     <p class='btn-box'>
                       <input id='".$ISBN."' class='quantity' type='number' min='0' max='$stock' onchange='checkQuantity(event, `".$ISBN."`)' value='0' required/>
                       <button name='addToCart' type='button' data-book-id='".$ISBN."' disabled onclick='updateCart(event, `".$ISBN."`, `".discountedPrice($price, $discount)."`, `".$name."`, `".$author."`)'>Add To Cart</button>

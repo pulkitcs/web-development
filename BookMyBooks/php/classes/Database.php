@@ -44,6 +44,14 @@
       }
     }
 
+    function tryQuery($sql) {
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      
+      return $stmt->fetchAll();
+    }
+
     function authenticateUser($username, $password) {
       $sql = "select * from users where email='$username' and password='$password' and disabled='0'";
       $result = $this->executeSQL($sql);
@@ -149,17 +157,39 @@
     }
 
     function getOrders($user) {
-      $sql = "select * from orders where user = '".$user."'";
+      $sql = "select * from orders where user = '".$user."' ORDER BY order_date DESC";
       $result = $this->executeSQL($sql);
 
       return $result;
     }
 
     function adminGetOrders() {
-      $sql = "select * from orders";
+      $sql = "select * from orders ORDER BY order_date DESC";
       $result = $this->executeSQL($sql);
 
       return $result;
-    } 
+    }
+       
+    function createOrder($id, $user, $address, $mobile, $details, $cost) {
+      $sql = "INSERT INTO ORDERS (id, user, address, mobile, details, cost ) VALUES ('$id', '$user', '$address', $mobile, '$details', '$cost')";
+      $sql1 = "UPDATE users set cart = NULL where email='$user'";
+
+      $this->tryQuery($sql);
+      $this->tryQuery($sql1);
+    }
+    
+    function cancelOrder($orderId) {
+      $sql = "UPDATE ORDERS set status = '3' WHERE id='$orderId'";
+      $this->tryQuery($sql);
+    }
+
+    function updateOrder($orderId, $data) {
+      $status = $data->status;
+      $deliveryDate = $data->deliveryDate;
+      $adminComment = $data->adminComment;
+
+      $sql = "UPDATE ORDERS set status = '$status', delivery_date = '$deliveryDate', admin_comments='$adminComment' WHERE id='$orderId'";
+      $this->tryQuery($sql);
+    }
   }
 ?>
