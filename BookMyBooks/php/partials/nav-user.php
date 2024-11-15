@@ -1,6 +1,6 @@
 <?php
   $status = session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['isAuthorized']);
-  $userOptions = $status ? '<li>Hi '.$_SESSION['name'].'</li><li class="user-nav-btn"><a href="#">My Account</a></li><li class="user-nav-btn"><a href="/login.php">Sign out</a></li>' : '<li class="user-nav-btn"><a href="/login.php">Sign in</a></li>';
+  $userOptions = $status ? '<li>Hi '.$_SESSION['name'].'</li><li class="user-nav-btn"><a href="./profile.php">My Account</a></li><li class="user-nav-btn"><a href="/login.php">Sign out</a></li>' : '<li class="user-nav-btn"><a href="/login.php">Sign in</a></li>';
 ?>
 <style>
 .user-section {

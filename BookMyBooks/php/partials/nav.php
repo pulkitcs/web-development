@@ -92,26 +92,6 @@
     <ul class="nav">
     </ul>
   </nav>
-  <!-- <div class="categories">
-    <i class="fa fa-list" aria-hidden="true"></i> ALL BOOK CATEGORIES
-    <ul>
-      <?php 
-        // require_once("./configs/app-config.php");
-        // require_once("./classes/Database.php");
-  
-        // $db = new Database($appConfig);
-        // $result = $db->getCategories();
-        // $string = "<li><a href='/home.php'>All</a></li>";
-        
-        // for($i=0; $i < count($result); ++$i) {
-        //   $name = $result[$i]['name'];
-        //   $string = $string."<li><a href='?category=".$name."'>".$name."</a></li>";
-        // }
-
-        // echo $string;
-      ?>
-    </ul>
-  </div>  -->
 </div>
 <script>
   (function(){
@@ -124,9 +104,13 @@
     ];
 
     const isAdmin = <?= isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0 ?>;
+    const isAuthorized = <?= isset($_SESSION['isAuthorized']) ? $_SESSION['isAuthorized'] : 0 ?>;
+
+    if(isAuthorized)
+      properties.push({ name: 'Profile', url: '/profile.php', icon: "fa fa-user" });
 
     if(isAdmin)
-      properties.push({ name: 'Manage', url: '/manage.php', icon: "fa fa-pencil-square" });
+      properties.push({ name: 'Admin', url: '/manage.php', icon: "fa fa-cog" });
 
     const elems = properties.map(({name, url, icon}) => {
       const isActive = (!window.location.href.includes('php') && name === 'Home')

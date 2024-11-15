@@ -131,7 +131,7 @@
     ?>
     <style>
       .side-control {
-        padding: .5rem;
+        padding: 1rem;
         background-color: var(--background-cream);
         border: solid thin var(--background-gray);
       }

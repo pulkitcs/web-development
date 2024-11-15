@@ -27,7 +27,11 @@
       .main.bmb-container p, .main.bmb-container ul.items,  .main.bmb-container div {
         font-size: 1.2rem;
         line-height: 1.6rem;
-        margin-bottom: 1.4rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .main.bmb-container div  {
+        margin-top: 3rem;
       }
 
       .main.bmb-container ul.items li{
@@ -41,7 +45,7 @@
       require_once("./partials/full-header.php");
     ?>
     <main class="bmb-container main">
-    <h1>Welcome to <strong>BookMyBooks</strong></h1>
+    <h1>About <strong>BookMyBooks</strong></h1>
     <p>At <strong>BookMyBooks</strong>, we believe in the magic of books. Our mission is to bring the joy of reading to everyone, everywhere. Whether you're a lifelong bookworm or just discovering the wonders of the written word, we have something for you.
     </p>
     <h2>Our Story</h2>

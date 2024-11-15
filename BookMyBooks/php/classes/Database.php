@@ -66,6 +66,12 @@
       return $result[0];
     }
 
+    function updateUser($email, $name, $address, $mobile) {
+      $sql = "UPDATE users SET name = '$name', address = '$address', mobile = '$mobile' WHERE email = '$email'";
+
+      return $this->executeSQL($sql);
+    }
+
     function getAllUsers() {
       $sql = "select * from users";
       $result = $this->executeSQL($sql);

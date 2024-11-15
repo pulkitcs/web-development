@@ -169,6 +169,8 @@
       </div> -->
       <div class="content">
         <h1 class="heading">Welcome</h1>
+        <p style="font-size: 1.2rem;margin-bottom: 2rem;">At BookMyBooks, we believe in the magic of books. Our mission is to bring the joy of reading to everyone, everywhere. Whether you're a lifelong bookworm or just discovering the wonders of the written word, we have something for you. Scroll through the below list to search a relevant book as per your needs.</p>
+  
         <h2 class="sub-heading">Category: <?= isset($_GET['category']) ? $_GET['category'] : 'All' ?> <span class="filters"><?= $categoryStr ?></span></h1>
         <h2 class="sub-heading"><?= isset($_GET['search']) ? "Search: ".$_GET['search']."<button class='search-reset' type='button' onclick='window.location.href=`./index.php`'>Clear / Reset</button>" : null ?></h2>
         <section class="card-container">

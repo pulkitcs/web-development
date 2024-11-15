@@ -54,7 +54,7 @@ body {
 }
 
 .main {
-  padding: 1rem;
+  padding: 1rem 2rem;
   min-height: 51.5rem;
   background-color: var(--white);
   box-sizing: border-box;
