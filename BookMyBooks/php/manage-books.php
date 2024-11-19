@@ -119,7 +119,7 @@
     $publication_year = $_POST['publication-year'];
     $language = $_POST['language'];
     $category = $_POST['category'];
-    $thumbnail = isset($_FILES['new-thumbnail']) ? convertImageToBase64($_FILES['new-thumbnail']) : $_POST['thumbnail'];
+    $thumbnail = isset($_FILES['new-thumbnail']) && isset($_POST['new-thumbnail']) ? convertImageToBase64($_FILES['new-thumbnail']) : $_POST['thumbnail'];
     $disabled = $_POST['disabled'];
     $stock = $_POST['stock'];
     $discount = $_POST['discount'];
@@ -145,9 +145,9 @@
   }
 
   function listBooks($db) {
-    if(isset($_POST['id']))
+    if(isset($_POST['ISBN']) && isset($_POST['id']))
       updateBookDetails($db);
-    else if(isset($_POST['ISBN']))
+    else if (isset($_POST['ISBN']))
       addBook($db);
     else;
 

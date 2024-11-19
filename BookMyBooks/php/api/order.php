@@ -11,10 +11,6 @@
     echo $response;
   }
 
-  function failure() {
-    http_response_code(500);
-  }
-
   function getCost($json) {
     $json_decoded = json_decode($json);
     $keys = array_keys(get_object_vars($json_decoded));
@@ -28,6 +24,26 @@
     }
 
     return $total;
+  }
+
+  function listOrders($db) {
+    $startdate = null;
+    $enddate = null;
+    $status = isset($_GET['status']) ? $_GET['status'] : null;
+
+    if(isset($_GET['startdate']) && isset($_GET['enddate'])) {
+      $startdate = $_GET['startdate'];
+      $enddate = $_GET['enddate'];
+    }
+
+    try {
+      $result = $db->getOrdersByDate($startdate, $enddate, $status);
+      success(json_encode($result));
+    }
+    catch(Exception $e) {
+      http_response_code(500);
+      $e->getMessage();
+    }
   }
 
   function createOrder($db, $username) {
@@ -67,6 +83,34 @@
     }
   }
 
+  function postRequests($db, $isAdmin, $username) {
+    $post_body = file_get_contents('php://input');
+    $opCode = json_decode($post_body);
+    $operation = $opCode->operation;
+    $orderId = $opCode->orderId;
+
+    if(isset($post_body)) {
+      switch($operation) {
+        case 'create': {
+          createOrder($db, $username);
+          break;
+        }
+        case 'update': {
+          $data = $opCode->data;
+          updateOrder($db, $orderId, $data);
+        }
+          break;
+        case 'cancel':
+          cancelOrder($db, $orderId);
+          break;
+        default:
+          http_response_code(400);
+      }
+    } else {
+      http_response_code(400);
+    }
+  }
+
   function main($appConfig) {
     $db = new Database($appConfig);
     $isAdmin = $_SESSION['isAdmin'];
@@ -75,29 +119,14 @@
     if(!$_SESSION['isAuthorized'])
       header("HTTP/1.1 401 Unauthorized");
     else {
-      $post_body = file_get_contents('php://input');
-      $opCode = json_decode($post_body);
-      $operation = $opCode->operation;
-      $orderId = $opCode->orderId;
-      $data = $opCode->data;
-
-      if(isset($post_body)) {
-        switch($operation) {
-          case 'create': {
-            createOrder($db, $username);
-            break;
-          }
-          case 'update':
-            updateOrder($db, $orderId, $data);
-            break;
-          case 'cancel':
-            cancelOrder($db, $orderId);
-            break;
-          default:
-            http_response_code(400);
-        }
-      } else {
-        http_response_code(400);
+      switch($_SERVER['REQUEST_METHOD']) {
+        case "GET":
+        default:
+          listOrders($db);
+          break;
+        case "POST":
+          postRequests($db, $isAdmin, $username);
+          break;
       }
     }
   }

@@ -181,7 +181,7 @@
   Date.prototype.toDateInputValue = (function() {
     var local = new Date(this);
     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    return local.toJSON().slice(0,10);
+    return local.toJSON()?.slice(0,10);
   });
 
   function fetchData(url, body) {
@@ -202,8 +202,12 @@
     const orderStatus = document.getElementById('upt-order-status');
     const deliveryDate = document.getElementById('upt-order-delivery-date');
     const adminComment = document.getElementById('upt-order-admin-comment');
+    let date;
 
-    deliveryDate.value = new Date(deliverDate).toDateInputValue();
+    if(deliverDate) date = new Date(deliverDate);
+    else date = new Date();
+
+    deliveryDate.value = date.toDateInputValue();
     deliveryDate.max = new Date().toISOString().split("T")[0];
     orderStatus.value = status;
 

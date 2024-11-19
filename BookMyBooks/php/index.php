@@ -219,7 +219,7 @@
                     <p>Cash on delivery only</p>
                     <p class='btn-box'>
                       <input id='".$ISBN."' class='quantity' type='number' min='0' max='$stock' onchange='checkQuantity(event, `".$ISBN."`)' value='0' required/>
-                      <button name='addToCart' type='button' data-book-id='".$ISBN."' disabled onclick='updateCart(event, `".$ISBN."`, `".discountedPrice($price, $discount)."`, `".$name."`, `".$author."`)'>Add To Cart</button>
+                      <button name='addToCart' type='button' data-book-id='".$ISBN."' disabled onclick='updateCart(event, `".$ISBN."`, `".discountedPrice($price, $discount)."`, `".$name."`, `".$author."`, `".$publisher."`)'>Add To Cart</button>
                     </p>
                   </div>
                 </div>";
@@ -230,11 +230,7 @@
           ?>
        </section>
        <script>
-          function addToCart(isbn, qty, btn) {
-
-          }
-
-          function updateCart(event, isbn, discountedPrice, title, author) {
+          function updateCart(event, isbn, discountedPrice, title, author, publisher) {
             const { target: { previousElementSibling }} = event;
             const { value: quantity } = previousElementSibling;
 
@@ -243,7 +239,7 @@
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ isbn, title, author, price: discountedPrice, quantity: parseInt(quantity) })
+              body: JSON.stringify({ isbn, title, author, publisher, price: discountedPrice, quantity: parseInt(quantity) })
             })
             .then(e => { 
               const { status } = e;

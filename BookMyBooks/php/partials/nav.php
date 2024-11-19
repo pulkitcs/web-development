@@ -99,18 +99,28 @@
     const properties = [
       { name: 'Home', url: '/index.php', icon: "fa fa-home"}, 
       { name: 'My Cart & Orders', url: '/cart.php', icon: "fa fa-shopping-cart"},
-      { name: 'About Us', url: '/aboutus.php', icon: "fa fa-question-circle"},
-      { name: 'Contact Us', url: '/contactus.php', icon: "fa fa-phone-square"},
     ];
 
     const isAdmin = <?= isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0 ?>;
     const isAuthorized = <?= isset($_SESSION['isAuthorized']) ? $_SESSION['isAuthorized'] : 0 ?>;
+    const isReseller = <?= isset($_SESSION['isReseller']) ? $_SESSION['isReseller'] : 0 ?>;
 
-    if(isAuthorized)
+    if(!isAuthorized) {
+      properties.push(
+        ...[
+          { name: 'About Us', url: '/aboutus.php', icon: "fa fa-question-circle"},
+          { name: 'Contact Us', url: '/contactus.php', icon: "fa fa-phone-square"}
+        ]
+      );
+    }
+    if(isAuthorized && !isAdmin && !isReseller)
       properties.push({ name: 'Profile', url: '/profile.php', icon: "fa fa-user" });
 
-    if(isAdmin)
+    if(isAdmin && !isReseller)
       properties.push({ name: 'Admin', url: '/manage.php', icon: "fa fa-cog" });
+    
+    if(isAdmin || isReseller)
+      properties.push({ name: 'Sales', url: '/sales.php', icon: "fa fa-money" });
 
     const elems = properties.map(({name, url, icon}) => {
       const isActive = (!window.location.href.includes('php') && name === 'Home')

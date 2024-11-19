@@ -18,6 +18,7 @@
   function updateCart($db, $body) {
     $title = $body->title;
     $author = $body->author;
+    $publisher = $body->publisher;
     $price = $body->price;
     $quantity = $body->quantity;
     $isbn = $body->isbn;
@@ -33,6 +34,7 @@
 
     $properties['title'] = $title;
     $properties['author'] = $author;
+    $properties['publisher'] = $publisher; 
     $properties['price'] = $price;
     $properties['quantity'] = $quantity;
 

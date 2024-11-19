@@ -19,6 +19,7 @@
       $user = $db->getUser($usrname);
       $_SESSION['isAuthorized'] = 1;
       $_SESSION['isAdmin'] = $user['isAdmin'];
+      $_SESSION['isReseller'] = $user['isReseller'];
       $_SESSION['name'] = $user['name'];
       $_SESSION['email'] = $user['email'];
 

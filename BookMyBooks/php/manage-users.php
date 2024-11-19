@@ -11,6 +11,15 @@
     return $actualValue === $value ? "selected" : "";
   }
 
+  function checkChecked($isAdmin, $isReseller, $value) {
+    if($value === '0')
+      return $isReseller === '0' ? $isAdmin === '0' ? 'checked' : '' : '';
+    else if($value === '1')
+      return $isReseller === '0' ? $isAdmin === '1' ? 'checked' : '' : '';
+    else if($value === '2')
+      return $isReseller === '1' ? 'checked' : '';
+  }
+
   function editUser($db) {
     $result = $db -> getUser($_GET['id']);
 
@@ -27,10 +36,11 @@
         <textarea name="address" required placeholder="Your address">'.$result['address'].'</textarea>
         <select name="country"><option value="'.$result['country'].'">'.$result['country'].'</option></select>
         <input name="mobile" type="text" required placeholder="Mobile Number" pattern="[0-9]{10,10}" value="'.$result['mobile'].'"/>
-        <select name="admin" required>
-          <option value="1" '.checkSelect($result['isAdmin'], "1").'>Admin</option>
-          <option value="0" '.checkSelect($result['isAdmin'], "0").'>Not Admin</option>
-        </select>
+          <span class="user-selection">
+          User Type: <input type="radio" name="user-type" value="0" '.checkChecked($result['isAdmin'], $result['isReseller'], '0').'> Normal 
+            <input type="radio" name="user-type" value="1" '.checkChecked($result['isAdmin'], $result['isReseller'], '1').'> Admin 
+            <input type="radio" name="user-type" value="2" '.checkChecked($result['isAdmin'], $result['isReseller'], '2').'> Reseller
+        </span>
         <select name="disabled" required>
           <option value="1" '.checkSelect($result['disabled'], "1").'>Disabled</option>
           <option value="0" '.checkSelect($result['disabled'], "0").'>Enabled</option>
@@ -54,10 +64,9 @@
         <textarea name="address" required placeholder="Your address"></textarea>
         <select name="country" required><option value="India">India</option></select>
         <input name="mobile" type="text" required placeholder="Mobile Number" pattern="[0-9]{10,10}" />
-        <select name="admin" required>
-          <option value="0">Not Admin</option>
-          <option value="1">Admin</option>
-        </select>
+        <span class="user-selection">
+          User Type: <input type="radio" name="user-type" value="0" checked> Normal <input type="radio" name="user-type" value="1"> Admin <input type="radio" name="user-type" value="2"> Reseller
+        </span>
         <select name="disabled" required>
           <option value="0">Enabled</option>
           <option value="1">Disabled</option>
@@ -77,11 +86,24 @@
     $address = $_POST['address'];
     $country = $_POST['country'];
     $mobile = $_POST['mobile'];
-    $isAdmin = $_POST['admin'];
+    $userType = $_POST['user-type'];
     $disabled = $_POST['disabled'];
     $comments = $_POST['admin_comments'];
+    $isAdmin = '0';
+    $isReseller = '0';
 
-    $db -> adminUpdateUser($id, $fullname, $username, $repassword, $address, $country, $mobile, $isAdmin, $disabled, $comments);
+    if($userType === '2') {
+      $isAdmin = '0';
+      $isReseller = '1';
+    } else if($userType === '1') {
+      $isAdmin = '1';
+      $isReseller = '0';
+    } else {
+       $isAdmin = '0';
+      $isReseller = '0';
+    }
+
+    $db -> adminUpdateUser($id, $fullname, $username, $repassword, $address, $country, $mobile, $isAdmin, $isReseller, $disabled, $comments);
   }
 
   function createUser($db) {
@@ -91,11 +113,24 @@
     $address = $_POST['address'];
     $country = $_POST['country'];
     $mobile = $_POST['mobile'];
-    $isAdmin = $_POST['admin'];
+    $userType = $_POST['user-type'];
     $disabled = $_POST['disabled'];
     $comments = $_POST['admin_comments'];
+    $isAdmin = '0';
+    $isReseller = '0';
 
-    $db -> adminCreateUser($fullname, $username, $repassword, $address, $country, $mobile, $isAdmin, $disabled, $comments);
+    if($userType === '2') {
+      $isAdmin = '0';
+      $isReseller = '1';
+    } else if($userType === '1') {
+      $isAdmin = '1';
+      $isReseller = '0';
+    } else {
+       $isAdmin = '0';
+      $isReseller = '0';
+    }
+
+    $db -> adminCreateUser($fullname, $username, $repassword, $address, $country, $mobile, $isAdmin, $isReseller, $disabled, $comments);
   }
 
   function getAllUsers($db) {
@@ -124,6 +159,7 @@
             <th>Address</th>
             <th>Disabled</th>
             <th>Is Admin</th>
+            <th>Is Reseller</th>
             <th>Admin Comments</th>
             <th></th>
           </tr>
@@ -138,11 +174,13 @@
         $address = $result[$i]['address'];
         $disabled = $result[$i]['disabled'];
         $isAdmin = $result[$i]['isAdmin'];
+        $isReseller = $result[$i]['isReseller'];
         $admin_comments = $result[$i]['admin_comments'];
   
         $serialNo = $i + 1;
         $disabled_state = $disabled === '0' ? 'false' : 'true';
         $admin_state = $isAdmin === '0' ?  'false' : 'true';
+        $reseller_state = $isReseller === '0' ?  'false' : 'true';
   
         $read.="
           <tr>
@@ -154,6 +192,7 @@
             <td>".$address."</td>
             <td>".$disabled_state."</td>
             <td>".$admin_state."</td>
+            <td>".$reseller_state."</td>
             <td>".$admin_comments."</td>
             <td><a class='edit-link' href='./manage.php?type=users&mode=edit&id=".$email."'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a></td>
           </tr>";
@@ -224,6 +263,17 @@
 
   .table {
     margin-top: 1.5rem;
+  }
+
+  .user-selection {
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    padding: 1rem;
+    display: inline-block;
+    width: 100%;
+    border: solid thin var(--background-gray);
+    border-radius: 5px;
+    margin-bottom: 1rem;
   }
 </style>
 <div>
