@@ -6,7 +6,7 @@
   $db = new Database($appConfig);
 
   function ordersView($db) {
-    $result = $db -> adminGetOrders();
+    $result = $db -> getOrders($_SESSION['email']);
     $count = sizeof($result);
     
     if($count === 0) return "<p>No Orders Found!</p>";

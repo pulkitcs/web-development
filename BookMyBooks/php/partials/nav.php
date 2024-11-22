@@ -103,7 +103,7 @@
 
     const isAdmin = <?= isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0 ?>;
     const isAuthorized = <?= isset($_SESSION['isAuthorized']) ? $_SESSION['isAuthorized'] : 0 ?>;
-    const isReseller = <?= isset($_SESSION['isReseller']) ? $_SESSION['isReseller'] : 0 ?>;
+    const isPublisher = <?= isset($_SESSION['isPublisher']) ? $_SESSION['isPublisher'] : 0 ?>;
 
     if(!isAuthorized) {
       properties.push(
@@ -113,13 +113,13 @@
         ]
       );
     }
-    if(isAuthorized && !isAdmin && !isReseller)
+    if(isAuthorized && !isAdmin && !isPublisher)
       properties.push({ name: 'Profile', url: '/profile.php', icon: "fa fa-user" });
 
-    if(isAdmin && !isReseller)
+    if(isAdmin && !isPublisher)
       properties.push({ name: 'Admin', url: '/manage.php', icon: "fa fa-cog" });
     
-    if(isAdmin || isReseller)
+    if(isAdmin || isPublisher)
       properties.push({ name: 'Sales', url: '/sales.php', icon: "fa fa-money" });
 
     const elems = properties.map(({name, url, icon}) => {

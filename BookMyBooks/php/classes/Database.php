@@ -144,14 +144,14 @@
       return $this->executeSQL($sql);
     }
 
-    function adminCreateUser($name, $email, $repassword, $address, $country, $mobile, $admin, $reseller, $disabled, $comments) {
-      $sql = "INSERT INTO USERS (name, email, password, country, mobile, address, isAdmin, isReseller, disabled, admin_comments) VALUES ('$name', '$email', '$repassword', '$country', '$mobile', '$address', '$admin', '$reseller', '$disabled', '$comments')";
+    function adminCreateUser($name, $email, $repassword, $address, $country, $mobile, $admin, $publisher, $disabled, $comments) {
+      $sql = "INSERT INTO USERS (name, email, password, country, mobile, address, isAdmin, isPublisher, disabled, admin_comments) VALUES ('$name', '$email', '$repassword', '$country', '$mobile', '$address', '$admin', '$publisher', '$disabled', '$comments')";
 
       return $this->executeSQL($sql);
     }
 
-    function adminUpdateUser($id, $name, $email, $repassword, $address, $country, $mobile, $admin, $reseller, $disabled, $comments) {
-      $sql = "UPDATE users SET name='".$name."', email='".$email."', password='".$repassword."', country='".$country."', mobile='".$mobile."', address='".$address."', isAdmin='".$admin."', isReseller='".$reseller."', disabled='".$disabled."', admin_comments='".$comments."' where email='".$id."'";
+    function adminUpdateUser($id, $name, $email, $repassword, $address, $country, $mobile, $admin, $publisher, $disabled, $comments) {
+      $sql = "UPDATE users SET name='".$name."', email='".$email."', password='".$repassword."', country='".$country."', mobile='".$mobile."', address='".$address."', isAdmin='".$admin."', isPublisher='".$publisher."', disabled='".$disabled."', admin_comments='".$comments."' where email='".$id."'";
 
       return $this->executeSQL($sql);
     }
