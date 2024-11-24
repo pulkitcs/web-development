@@ -205,7 +205,7 @@
     }
        
     function createOrder($id, $user, $address, $mobile, $details, $cost) {
-      $sql = "INSERT INTO ORDERS (id, user, address, mobile, details, cost ) VALUES ('$id', '$user', '$address', $mobile, '$details', '$cost')";
+      $sql = "INSERT INTO orders (id, user, address, mobile, details, cost ) VALUES ('$id', '$user', '$address', $mobile, '$details', '$cost')";
       $sql1 = "UPDATE users set cart = NULL where email='$user'";
 
       $this->tryQuery($sql);
@@ -215,7 +215,7 @@
     }
     
     function cancelOrder($orderId) {
-      $sql = "UPDATE ORDERS set status = '3' WHERE id='$orderId'";
+      $sql = "UPDATE orders set status = '3' WHERE id='$orderId'";
       $this->tryQuery($sql);
 
       $result = $this->tryQuery("SELECT details FROM orders WHERE id='$orderId'");
@@ -227,7 +227,7 @@
       $deliveryDate = $data->deliveryDate;
       $adminComment = $data->adminComment;
 
-      $sql = "UPDATE ORDERS set status = '$status', delivery_date = '$deliveryDate', admin_comments='$adminComment' WHERE id='$orderId'";
+      $sql = "UPDATE orders set status = '$status', delivery_date = '$deliveryDate', admin_comments='$adminComment' WHERE id='$orderId'";
       $this->tryQuery($sql);
 
       if($status === '3') {
