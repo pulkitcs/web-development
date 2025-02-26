@@ -18,9 +18,8 @@ function App() {
         >
           Learn React
         </a>
-        <div>
-          Another new change
-        </div>
+        <div> 
+          Another new change </div>
       </header>
     </div>
   );
