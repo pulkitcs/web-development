@@ -1,4 +1,4 @@
-<?php require_once("./partials/admin-session.php"); ?>
+<?php require_once("./partials/publisher-session.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

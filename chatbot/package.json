@@ -1,0 +1,26 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot in React",
+  "main": "index.js",
+  "module": "true",
+  "scripts": {
+    "start": "ts-node ./server/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pulkitchandra89@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5",
+    "express": "^5.0.1",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  }
+}

@@ -200,7 +200,7 @@ function SalesApp() {
   function renderData(filter) {
     if(filter === ALL)
       return RenderAll(structuredData);
-    else return RenderByPublisher(filter, structuredData?.publisherData[filter], structuredData?.publisherData[filter]['books']);
+    else return RenderByPublisher(filter, structuredData?.publisherData[filter], structuredData?.publisherData?.[filter]?.['books']);
   }
 
   return (<div className="sub-section">

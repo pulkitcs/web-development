@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `disabled` enum('1','0') NOT NULL DEFAULT '0',
   `isReset` enum('1','0') NOT NULL DEFAULT '0',
   `isAdmin` enum('1','0') NOT NULL DEFAULT '0',
-  `isReseller` enum('1','0') NOT NULL DEFAULT '0',
+  `isPublisher` enum('1','0') NOT NULL DEFAULT '0',
   `country` varchar(50) NOT NULL,
   `mobile` varchar(50) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bmb.users: ~1 rows (approximately)
-REPLACE INTO `users` (`name`, `email`, `password`, `disabled`, `isReset`, `isAdmin`, `isReseller`, `country`, `mobile`, `address`, `admin_comments`, `cart`) VALUES
+REPLACE INTO `users` (`name`, `email`, `password`, `disabled`, `isReset`, `isAdmin`, `isPublisher`, `country`, `mobile`, `address`, `admin_comments`, `cart`) VALUES
 	('Pulkit Chandra', 'pulkit.cs@gmail.com', 'Password@123', '0', '0', '1', '0', 'India', '9999999999', 'Noida', '', '{}');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

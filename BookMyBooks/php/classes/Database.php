@@ -144,14 +144,14 @@
       return $this->executeSQL($sql);
     }
 
-    function adminCreateUser($name, $email, $repassword, $address, $country, $mobile, $admin, $reseller, $disabled, $comments) {
-      $sql = "INSERT INTO USERS (name, email, password, country, mobile, address, isAdmin, isReseller, disabled, admin_comments) VALUES ('$name', '$email', '$repassword', '$country', '$mobile', '$address', '$admin', '$reseller', '$disabled', '$comments')";
+    function adminCreateUser($name, $email, $repassword, $address, $country, $mobile, $admin, $publisher, $disabled, $comments) {
+      $sql = "INSERT INTO USERS (name, email, password, country, mobile, address, isAdmin, isPublisher, disabled, admin_comments) VALUES ('$name', '$email', '$repassword', '$country', '$mobile', '$address', '$admin', '$publisher', '$disabled', '$comments')";
 
       return $this->executeSQL($sql);
     }
 
-    function adminUpdateUser($id, $name, $email, $repassword, $address, $country, $mobile, $admin, $reseller, $disabled, $comments) {
-      $sql = "UPDATE users SET name='".$name."', email='".$email."', password='".$repassword."', country='".$country."', mobile='".$mobile."', address='".$address."', isAdmin='".$admin."', isReseller='".$reseller."', disabled='".$disabled."', admin_comments='".$comments."' where email='".$id."'";
+    function adminUpdateUser($id, $name, $email, $repassword, $address, $country, $mobile, $admin, $publisher, $disabled, $comments) {
+      $sql = "UPDATE users SET name='".$name."', email='".$email."', password='".$repassword."', country='".$country."', mobile='".$mobile."', address='".$address."', isAdmin='".$admin."', isPublisher='".$publisher."', disabled='".$disabled."', admin_comments='".$comments."' where email='".$id."'";
 
       return $this->executeSQL($sql);
     }
@@ -205,7 +205,7 @@
     }
        
     function createOrder($id, $user, $address, $mobile, $details, $cost) {
-      $sql = "INSERT INTO ORDERS (id, user, address, mobile, details, cost ) VALUES ('$id', '$user', '$address', $mobile, '$details', '$cost')";
+      $sql = "INSERT INTO orders (id, user, address, mobile, details, cost ) VALUES ('$id', '$user', '$address', $mobile, '$details', '$cost')";
       $sql1 = "UPDATE users set cart = NULL where email='$user'";
 
       $this->tryQuery($sql);
@@ -215,7 +215,7 @@
     }
     
     function cancelOrder($orderId) {
-      $sql = "UPDATE ORDERS set status = '3' WHERE id='$orderId'";
+      $sql = "UPDATE orders set status = '3' WHERE id='$orderId'";
       $this->tryQuery($sql);
 
       $result = $this->tryQuery("SELECT details FROM orders WHERE id='$orderId'");
@@ -227,7 +227,7 @@
       $deliveryDate = $data->deliveryDate;
       $adminComment = $data->adminComment;
 
-      $sql = "UPDATE ORDERS set status = '$status', delivery_date = '$deliveryDate', admin_comments='$adminComment' WHERE id='$orderId'";
+      $sql = "UPDATE orders set status = '$status', delivery_date = '$deliveryDate', admin_comments='$adminComment' WHERE id='$orderId'";
       $this->tryQuery($sql);
 
       if($status === '3') {

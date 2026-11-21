@@ -58,7 +58,8 @@
     try {
       $db->createOrder($id, $username, $address, $mobile, $json, $cost);
     }
-    catch(PDOException $e) {
+    catch(Exception $e) {
+      echo $e->getMessage();
       http_response_code(500);
     }
   }
@@ -67,7 +68,7 @@
     try {
       $db->cancelOrder($orderId);
     }
-    catch(PDOException $e) {
+    catch(Exception $e) {
       echo $e->getMessage();
       http_response_code(500);
     }
@@ -77,7 +78,7 @@
     try {
       $db->updateorder($orderId, $data);
     }
-    catch(PDOException $e) {
+    catch(Exception $e) {
       echo $e->getMessage();
       http_response_code(500);
     }

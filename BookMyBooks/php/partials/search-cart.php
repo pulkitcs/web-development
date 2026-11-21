@@ -113,7 +113,7 @@
 </style>
 
 <div class="search-cart">
-  <form class="search" method="get">
+  <form class="search" method="get" action="./index.php">
     <?= getCategories($db) ?>
     <input type="text" name="search" class="search-box" placeholder="Enter keywords to search.." value="<?=$search?>"/>
     <button class="search-submit" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
